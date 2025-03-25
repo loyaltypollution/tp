@@ -87,7 +87,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasStaff(staffMember)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_STAFF);
             }
-            addressBook.addStaff(staffMember);
+            addressBook.addPerson(staffMember);
         }
 
         for (JsonAdaptedCustomer jsonAdaptedCustomer : customers) {
@@ -95,7 +95,7 @@ class JsonSerializableAddressBook {
             if (addressBook.hasCustomer(customer)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
             }
-            addressBook.addCustomer(customer);
+            addressBook.addPerson(customer);
         }
 
         return addressBook;

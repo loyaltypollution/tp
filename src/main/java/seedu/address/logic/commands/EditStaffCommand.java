@@ -98,7 +98,7 @@ public class EditStaffCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setStaff(staffToEdit, editedStaff);
+        model.setPerson(staffToEdit, editedStaff);
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedStaff)));
     }
@@ -173,7 +173,7 @@ public class EditStaffCommand extends Command {
          */
         public EditStaffDescriptor(EditStaffDescriptor toCopy) {
             super(toCopy);
-            setStaffId(toCopy.staffId);
+            setPersonId(toCopy.staffId);
             setRole(toCopy.role);
             setShiftTiming(toCopy.shiftTiming);
             setHoursWorked(toCopy.hoursWorked);
@@ -192,7 +192,7 @@ public class EditStaffCommand extends Command {
             return Optional.ofNullable(staffId);
         }
 
-        public void setStaffId(StaffId staffId) {
+        public void setPersonId(StaffId staffId) {
             this.staffId = staffId;
         }
 

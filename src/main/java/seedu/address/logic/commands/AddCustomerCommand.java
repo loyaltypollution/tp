@@ -71,7 +71,7 @@ public class AddCustomerCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_CUSTOMER);
         }
 
-        model.addCustomer(toAdd);
+        model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

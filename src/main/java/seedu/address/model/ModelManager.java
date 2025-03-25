@@ -45,9 +45,9 @@ public class ModelManager implements Model {
         this.drinkCatalog = new DrinkCatalog(drinkCatalog);
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredStaffs = new FilteredList<>(this.addressBook.getStaffList());
-        filteredCustomers = new FilteredList<>(this.addressBook.getCustomerList());
+        filteredPersons = this.addressBook.getPersonList();
+        filteredStaffs = this.addressBook.getStaffList();
+        filteredCustomers = this.addressBook.getCustomerList();
         filteredDrinks = new FilteredList<>(this.drinkCatalog.getDrinkList());;
 
     }
@@ -145,8 +145,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addStaff(Staff staffMember) {
-        addressBook.addStaff(staffMember);
+    public void addPerson(Staff staffMember) {
+        addressBook.addPerson(staffMember);
         updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
     }
 
@@ -155,12 +155,6 @@ public class ModelManager implements Model {
         requireNonNull(staffMember);
         addressBook.removeStaff(staffMember);
         updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
-    }
-
-    @Override
-    public void addCustomer(Customer customer) {
-        addressBook.addCustomer(customer);
-        updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
     }
 
     @Override
@@ -179,17 +173,17 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setStaff(Staff target, Staff editedStaff) {
+    public void setPerson(Staff target, Staff editedStaff) {
         requireAllNonNull(target, editedStaff);
 
-        addressBook.setStaff(target, editedStaff);
+        addressBook.setPerson(target, editedStaff);
     }
 
     @Override
-    public void setCustomer(Customer target, Customer editedCustomer) {
+    public void setPerson(Customer target, Customer editedCustomer) {
         requireAllNonNull(target, editedCustomer);
 
-        addressBook.setCustomer(target, editedCustomer);
+        addressBook.setPerson(target, editedCustomer);
     }
     //=========== Filtered Person List Accessors =============================================================
 
