@@ -15,14 +15,15 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddCustomerCommand;
+import seedu.address.logic.commands.AddDrinkCommand;
 import seedu.address.logic.commands.AddStaffCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteCustomerCommand;
 import seedu.address.logic.commands.DeleteStaffCommand;
-import seedu.address.logic.commands.DrinkAddCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditCustomerCommand;
 import seedu.address.logic.commands.EditStaffCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -75,8 +76,10 @@ public class AddressBookParser {
         COMMAND_MAP.put(
             AddCustomerCommand.COMMAND_WORD_SHORTCUT, arguments -> new AddCustomerCommandParser().parse(arguments));
         COMMAND_MAP.put(
+            EditCustomerCommand.COMMAND_WORD, arguments -> new EditCustomerCommandParser().parse(arguments));
+        COMMAND_MAP.put(
             DeleteCustomerCommand.COMMAND_WORD, arguments -> new DeleteCustomerCommandParser().parse(arguments));
-        COMMAND_MAP.put(DrinkAddCommand.COMMAND_WORD, arguments -> new DrinkAddCommandParser().parse(arguments));
+        COMMAND_MAP.put(AddDrinkCommand.COMMAND_WORD, arguments -> new AddDrinkCommandParser().parse(arguments));
         COMMAND_MAP.put(PurchaseCommand.COMMAND_WORD, arguments -> new PurchaseCommandParser().parse(arguments));
         COMMAND_MAP.put(HoursAddCommand.COMMAND_WORD, arguments -> new HoursAddCommandParser().parse(arguments));
     }

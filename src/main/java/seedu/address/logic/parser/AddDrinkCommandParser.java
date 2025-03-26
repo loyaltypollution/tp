@@ -7,27 +7,27 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.DrinkAddCommand;
+import seedu.address.logic.commands.AddDrinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.drink.Drink;
 
 /**
- * Parses input arguments and creates a new DrinkAddCommand object
+ * Parses input arguments and creates a new AddDrinkCommand object
  */
-public class DrinkAddCommandParser implements Parser<DrinkAddCommand> {
+public class AddDrinkCommandParser implements Parser<AddDrinkCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the DrinkAddCommand
-     * and returns a DrinkAddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddDrinkCommand
+     * and returns a AddDrinkCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public DrinkAddCommand parse(String args) throws ParseException {
+    public AddDrinkCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PRICE, PREFIX_CATEGORY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PRICE, PREFIX_CATEGORY)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DrinkAddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDrinkCommand.MESSAGE_USAGE));
         }
 
         String name = argMultimap.getValue(PREFIX_NAME).get();
@@ -46,7 +46,7 @@ public class DrinkAddCommandParser implements Parser<DrinkAddCommand> {
 
         Drink drink = new Drink(name, price, category);
 
-        return new DrinkAddCommand(drink);
+        return new AddDrinkCommand(drink);
     }
 
     /**

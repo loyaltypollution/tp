@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SHIFT_TIMING;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STAFF_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.logging.Logger;
+
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -54,6 +56,8 @@ public class AddStaffCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New staff added: %1$s";
     public static final String MESSAGE_DUPLICATE_STAFF = "This staff member already exists in the address book";
 
+    private static final Logger logger = Logger.getLogger(AddStaffCommand.class.getName());
+
     private final Staff toAdd;
 
     /**
@@ -67,12 +71,15 @@ public class AddStaffCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        logger.info("Executing AddStaffCommand for staff: " + toAdd.getName());
 
         if (model.hasStaff(toAdd)) {
+            logger.warning("Attempted to add duplicate staff: " + toAdd.getName());
             throw new CommandException(MESSAGE_DUPLICATE_STAFF);
         }
 
         model.addPerson(toAdd);
+        logger.info("Successfully added staff: " + toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

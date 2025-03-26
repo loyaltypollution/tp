@@ -13,7 +13,7 @@ import seedu.address.model.drink.Drink;
 /**
  * Adds a drink to the drink catalog.
  */
-public class DrinkAddCommand extends Command {
+public class AddDrinkCommand extends Command {
 
     public static final String COMMAND_WORD = "drinkadd";
 
@@ -33,9 +33,9 @@ public class DrinkAddCommand extends Command {
     private final Drink toAdd;
 
     /**
-     * Creates a DrinkAddCommand to add the specified {@code Drink}
+     * Creates a AddDrinkCommand to add the specified {@code Drink}
      */
-    public DrinkAddCommand(Drink drink) {
+    public AddDrinkCommand(Drink drink) {
         requireNonNull(drink);
         toAdd = drink;
     }
@@ -58,12 +58,12 @@ public class DrinkAddCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof DrinkAddCommand)) {
+        if (!(other instanceof AddDrinkCommand)) {
             return false;
         }
 
-        DrinkAddCommand otherDrinkAddCommand = (DrinkAddCommand) other;
-        return toAdd.equals(otherDrinkAddCommand.toAdd);
+        AddDrinkCommand otherAddDrinkCommand = (AddDrinkCommand) other;
+        return toAdd.equals(otherAddDrinkCommand.toAdd);
     }
 
     @Override

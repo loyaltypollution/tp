@@ -1,13 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX; // assuming ind/ is already defined as PREFIX_INDEX
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME; // assuming n/ is already defined as PREFIX_NAME
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRINKNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REDEEM;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.PurchaseCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -23,26 +22,33 @@ public class PurchaseCommandParser implements Parser<PurchaseCommand> {
      */
     public PurchaseCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-                args, PREFIX_INDEX, PREFIX_NAME);
+                args, PREFIX_DRINKNAME, PREFIX_REDEEM);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_NAME)
-                || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PurchaseCommand.MESSAGE_USAGE));
-        }
-
+        Index index;
         try {
-            Index index = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-            String drinkName = argMultimap.getValue(PREFIX_NAME).get().trim();
-
-            if (drinkName.isEmpty()) {
-                throw new ParseException("Drink name cannot be empty");
-            }
-
-            return new PurchaseCommand(index, drinkName);
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    PurchaseCommand.MESSAGE_USAGE), ive);
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PurchaseCommand.MESSAGE_USAGE), pe);
         }
+
+        if (!argMultimap.getValue(PREFIX_DRINKNAME).isPresent()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, PurchaseCommand.MESSAGE_USAGE));
+        }
+
+        String drinkName = argMultimap.getValue(PREFIX_DRINKNAME).get();
+        boolean isRedemption = false;
+
+        if (argMultimap.getValue(PREFIX_REDEEM).isPresent()) {
+            try {
+                isRedemption = ParserUtil.parseBoolean(argMultimap.getValue(PREFIX_REDEEM).get());
+            } catch (ParseException pe) {
+                throw new ParseException(pe.getMessage(), pe);
+            }
+        }
+
+        return new PurchaseCommand(index, drinkName, isRedemption);
     }
 
     /**

@@ -30,7 +30,7 @@ public class CustomerBuilder {
     public static final String DEFAULT_REMARK = "Regular customer";
     public static final String DEFAULT_REWARD_POINTS = "100";
     public static final String DEFAULT_VISIT_COUNT = "5";
-    public static final String DEFAULT_FAVORITE_ITEM = "Latte";
+    public static final String DEFAULT_FAVOURITE_ITEM = "Latte";
     public static final String DEFAULT_TOTAL_SPENT = "75.50";
     public static final String DEFAULT_RATING = "5";
 
@@ -42,7 +42,7 @@ public class CustomerBuilder {
     private Set<Tag> tags;
     private RewardPoints rewardPoints;
     private VisitCount visitCount;
-    private FavouriteItem favoriteItem;
+    private FavouriteItem favouriteItem;
     private TotalSpent totalSpent;
     private CustomerId customerId;
 
@@ -59,7 +59,7 @@ public class CustomerBuilder {
         tags = new HashSet<>();
         rewardPoints = new RewardPoints(DEFAULT_REWARD_POINTS);
         visitCount = new VisitCount(DEFAULT_VISIT_COUNT);
-        favoriteItem = new FavouriteItem(DEFAULT_FAVORITE_ITEM);
+        favouriteItem = new FavouriteItem(DEFAULT_FAVOURITE_ITEM);
         totalSpent = new TotalSpent(DEFAULT_TOTAL_SPENT);
     }
 
@@ -76,7 +76,7 @@ public class CustomerBuilder {
         tags = new HashSet<>(customerToCopy.getTags());
         rewardPoints = customerToCopy.getRewardPoints();
         visitCount = customerToCopy.getVisitCount();
-        favoriteItem = customerToCopy.getFavoriteItem();
+        favouriteItem = customerToCopy.getFavouriteItem();
         totalSpent = customerToCopy.getTotalSpent();
     }
 
@@ -145,10 +145,10 @@ public class CustomerBuilder {
     }
 
     /**
-     * Sets the {@code favoriteItem} of the {@code Customer} that we are building.
+     * Sets the {@code favouriteItem} of the {@code Customer} that we are building.
      */
-    public CustomerBuilder withFavoriteItem(String favoriteItem) {
-        this.favoriteItem = new FavouriteItem(favoriteItem);
+    public CustomerBuilder withFavouriteItem(String favouriteItem) {
+        this.favouriteItem = new FavouriteItem(favouriteItem);
         return this;
     }
 
@@ -173,6 +173,6 @@ public class CustomerBuilder {
      */
     public Customer build() {
         return new Customer(name, phone, email, address, remark, tags,
-                customerId, rewardPoints, visitCount, favoriteItem, totalSpent);
+                customerId, rewardPoints, visitCount, favouriteItem, totalSpent);
     }
 }

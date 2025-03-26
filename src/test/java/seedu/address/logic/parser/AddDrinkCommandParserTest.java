@@ -12,11 +12,11 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.DrinkAddCommand;
+import seedu.address.logic.commands.AddDrinkCommand;
 import seedu.address.model.drink.Drink;
 
-public class DrinkAddCommandParserTest {
-    private DrinkAddCommandParser parser = new DrinkAddCommandParser();
+public class AddDrinkCommandParserTest {
+    private AddDrinkCommandParser parser = new AddDrinkCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -24,16 +24,16 @@ public class DrinkAddCommandParserTest {
 
         // standard case
         assertParseSuccess(parser, NAME_DESC_LATTE + PRICE_DESC_LATTE + CATEGORY_DESC_COFFEE,
-                new DrinkAddCommand(expectedDrink));
+                new AddDrinkCommand(expectedDrink));
 
         // different order of fields
         assertParseSuccess(parser, PRICE_DESC_LATTE + CATEGORY_DESC_COFFEE + NAME_DESC_LATTE,
-                new DrinkAddCommand(expectedDrink));
+                new AddDrinkCommand(expectedDrink));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DrinkAddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDrinkCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_LATTE + PRICE_DESC_LATTE + CATEGORY_DESC_COFFEE,

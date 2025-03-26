@@ -66,10 +66,10 @@
             <Label fx:id="rewardPoints" styleClass="detail-value" />
         </HBox>
 
-        <!-- Favorite Item -->
+        <!-- Favourite Item -->
         <HBox spacing="5" alignment="CENTER_LEFT">
-            <Label text="Favorite Item:" styleClass="detail-label" />
-            <Label fx:id="favoriteItem" styleClass="detail-value" />
+            <Label text="Favourite Item:" styleClass="detail-label" />
+            <Label fx:id="favouriteItem" styleClass="detail-value" />
         </HBox>
 
         <!-- Remark -->

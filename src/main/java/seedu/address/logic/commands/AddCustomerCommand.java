@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FAVORITE_ITEM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAVOURITE_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REWARD_POINTS;
@@ -35,17 +35,18 @@ public class AddCustomerCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + PREFIX_REWARD_POINTS + "REWARD_POINTS "
             + PREFIX_VISIT_COUNT + "VISIT_COUNT "
-            + PREFIX_FAVORITE_ITEM + "FAVORITE_ITEM "
+            + PREFIX_FAVOURITE_ITEM + "FAVOURITE_ITEM "
             + PREFIX_TOTAL_SPENT + "TOTAL_SPENT "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
+            + PREFIX_CUSTOMER_ID + "C1234 "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_REWARD_POINTS + "150 "
             + PREFIX_VISIT_COUNT + "8 "
-            + PREFIX_FAVORITE_ITEM + "Cappuccino "
+            + PREFIX_FAVOURITE_ITEM + "Cappuccino "
             + PREFIX_TOTAL_SPENT + "120.50 "
             + PREFIX_TAG + "regular "
             + PREFIX_TAG + "vip";

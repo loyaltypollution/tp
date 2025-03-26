@@ -18,7 +18,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Person> PREDICATE_SHOW_ALL_STAFFS = unused -> true;
-    Predicate<Customer> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_ALL_CUSTOMERS = unused -> true;
     Predicate<Drink> PREDICATE_SHOW_ALL_DRINKS = unused -> true;
 
     /**
@@ -107,7 +107,7 @@ public interface Model {
     /**
      * Updates the filter of the filtered customer list to filter by the given {@code predicate}.
      */
-    void updateFilteredCustomerList(Predicate<Customer> predicate);
+    void updateFilteredCustomerList(Predicate<Person> predicate);
 
 
     /**

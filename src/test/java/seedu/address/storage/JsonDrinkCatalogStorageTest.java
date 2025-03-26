@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.exceptions.DataLoadingException;
-import seedu.address.model.drink.DrinkCatalog;
+import seedu.address.model.DrinkCatalog;
 
 public class JsonDrinkCatalogStorageTest {
 

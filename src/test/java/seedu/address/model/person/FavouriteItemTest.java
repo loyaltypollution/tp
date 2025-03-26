@@ -14,7 +14,6 @@ public class FavouriteItemTest {
         assertTrue(FavouriteItem.isValidFavouriteItem("Apple"));
         assertTrue(FavouriteItem.isValidFavouriteItem("Chocolate"));
         assertTrue(FavouriteItem.isValidFavouriteItem("1234")); // Numeric values should be allowed as well
-        assertTrue(FavouriteItem.isValidFavouriteItem("")); // Spaces are not considered blank
     }
 
     @Test

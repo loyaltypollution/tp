@@ -7,19 +7,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.CustomerId;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FavouriteItem;
 import seedu.address.model.person.HoursWorked;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.PerformanceRating;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.RewardPoints;
 import seedu.address.model.person.Role;
 import seedu.address.model.person.ShiftTiming;
 import seedu.address.model.person.StaffId;
+import seedu.address.model.person.TotalSpent;
+import seedu.address.model.person.VisitCount;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -144,25 +148,79 @@ public class ParserUtil {
         }
         return tagSet;
     }
-
     /**
-     * Parses a {@code String points} into an integer.
+     * Parses a {@code String rewardPoints} into a {@code RewardPoints}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws IllegalValueException if the given {@code points} is invalid.
+     * @throws ParseException if the given {@code rewardPoints} is invalid.
      */
-    public static int parsePoints(String points) throws IllegalValueException {
-        requireNonNull(points);
-        String trimmedPoints = points.trim();
-        try {
-            int pointsValue = Integer.parseInt(trimmedPoints);
-            if (pointsValue <= 0) {
-                throw new IllegalValueException("Points must be a positive integer");
-            }
-            return pointsValue;
-        } catch (NumberFormatException e) {
-            throw new IllegalValueException("Points must be a valid integer");
+    public static RewardPoints parseRewardPoints(String rewardPoints) throws ParseException {
+        requireNonNull(rewardPoints);
+        String trimmedRewardPoints = rewardPoints.trim();
+        if (!RewardPoints.isValidRewardPoints(trimmedRewardPoints)) {
+            throw new ParseException(RewardPoints.MESSAGE_CONSTRAINTS);
         }
+        return new RewardPoints(trimmedRewardPoints);
+    }
+
+    /**
+     * Parses a {@code String visitCount} into a {@code VisitCount}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code visitCount} is invalid.
+     */
+    public static VisitCount parseVisitCount(String visitCount) throws ParseException {
+        requireNonNull(visitCount);
+        String trimmedVisitCount = visitCount.trim();
+        if (!VisitCount.isValidVisitCount(trimmedVisitCount)) {
+            throw new ParseException(VisitCount.MESSAGE_CONSTRAINTS);
+        }
+        return new VisitCount(trimmedVisitCount);
+    }
+
+    /**
+     * Parses a {@code String favouriteItem} into a {@code FavouriteItem}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code favouriteItem} is invalid.
+     */
+    public static FavouriteItem parseFavouriteItem(String favouriteItem) throws ParseException {
+        requireNonNull(favouriteItem);
+        String trimmedFavouriteItem = favouriteItem.trim();
+        if (!FavouriteItem.isValidFavouriteItem(trimmedFavouriteItem)) {
+            throw new ParseException(FavouriteItem.MESSAGE_CONSTRAINTS);
+        }
+        return new FavouriteItem(trimmedFavouriteItem);
+    }
+
+    /**
+     * Parses a {@code String totalSpent} into a {@code TotalSpent}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code totalSpent} is invalid.
+     */
+    public static TotalSpent parseTotalSpent(String totalSpent) throws ParseException {
+        requireNonNull(totalSpent);
+        String trimmedTotalSpent = totalSpent.trim();
+        if (!TotalSpent.isValidTotalSpent(trimmedTotalSpent)) {
+            throw new ParseException(TotalSpent.MESSAGE_CONSTRAINTS);
+        }
+        return new TotalSpent(trimmedTotalSpent);
+    }
+
+    /**
+     * Parses a {@code String customerId} into a {@code CustomerId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code staffId} is invalid.
+     */
+    public static CustomerId parseCustomerId(String customerId) throws ParseException {
+        requireNonNull(customerId);
+        String trimmedCustomerId = customerId.trim();
+        if (!CustomerId.isValidCustomerId(trimmedCustomerId)) {
+            throw new ParseException(CustomerId.MESSAGE_CONSTRAINTS);
+        }
+        return new CustomerId(trimmedCustomerId);
     }
 
     /**
@@ -238,6 +296,20 @@ public class ParserUtil {
             throw new ParseException(PerformanceRating.MESSAGE_CONSTRAINTS);
         }
         return new PerformanceRating(trimmedPerformanceRating);
+    }
+
+    /**
+     * Parses a {@code String boolean} into a {@code boolean}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code boolean} is invalid.
+     */
+    public static boolean parseBoolean(String bool) throws ParseException {
+        String trimmedBool = bool.trim();
+        if (!trimmedBool.equalsIgnoreCase("true") && !trimmedBool.equalsIgnoreCase("false")) {
+            throw new ParseException("Boolean value must be 'true' or 'false'");
+        }
+        return Boolean.parseBoolean(trimmedBool);
     }
 
 

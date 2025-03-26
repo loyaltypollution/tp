@@ -1,16 +1,16 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DRINKNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REDEEM;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.PurchaseCommand;
-
 
 public class PurchaseCommandParserTest {
     private PurchaseCommandParser parser = new PurchaseCommandParser();
@@ -18,14 +18,21 @@ public class PurchaseCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         String drinkName = "Matcha";
+        Index targetIndex = INDEX_FIRST_PERSON;
 
         // Standard case
-        String userInput = " " + PREFIX_INDEX + "1 " + PREFIX_NAME + drinkName;
-        PurchaseCommand expectedCommand = new PurchaseCommand(INDEX_FIRST_PERSON, drinkName);
+        String userInput = " 1 " + PREFIX_DRINKNAME + drinkName;
+        PurchaseCommand expectedCommand = new PurchaseCommand(targetIndex, drinkName, false);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // Different order of fields
-        userInput = " " + PREFIX_NAME + drinkName + " " + PREFIX_INDEX + "1";
+        // With redemption flag = true
+        userInput = " 1 " + PREFIX_DRINKNAME + drinkName + " " + PREFIX_REDEEM + "true";
+        expectedCommand = new PurchaseCommand(targetIndex, drinkName, true);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // With redemption flag = false
+        userInput = " 1 " + PREFIX_DRINKNAME + drinkName + " " + PREFIX_REDEEM + "false";
+        expectedCommand = new PurchaseCommand(targetIndex, drinkName, false);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -33,22 +40,27 @@ public class PurchaseCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, PurchaseCommand.MESSAGE_USAGE);
 
-        // Missing index prefix
-        assertParseFailure(parser, " " + PREFIX_NAME + "Matcha", expectedMessage);
+        // Missing index
+        assertParseFailure(parser, PREFIX_DRINKNAME + "Matcha", expectedMessage);
 
-        // Missing drink name prefix
-        assertParseFailure(parser, " " + PREFIX_INDEX + "1", expectedMessage);
+        // Missing drink name
+        assertParseFailure(parser, "1", expectedMessage);
 
         // Empty string
         assertParseFailure(parser, "", expectedMessage);
     }
 
     @Test
-    public void parse_extraneousPreamble_failure() {
+    public void parse_invalidValue_failure() {
+        // Invalid redemption value
+        assertParseFailure(parser, " 1 " + PREFIX_DRINKNAME + "Matcha " + PREFIX_REDEEM + "yes",
+                "Boolean value must be 'true' or 'false'");
+    }
+    @Test
+    public void parse_invalidPreamble_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, PurchaseCommand.MESSAGE_USAGE);
 
-        // Non-empty preamble
-        assertParseFailure(parser, "some random text " + PREFIX_INDEX + "1 " + PREFIX_NAME + "Matcha",
-                expectedMessage);
+        // Non-integer index
+        assertParseFailure(parser, " abc " + PREFIX_DRINKNAME + "Matcha", expectedMessage);
     }
 }

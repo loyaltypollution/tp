@@ -72,10 +72,7 @@ public class DrinkTest {
     @Test
     public void toStringMethod() {
         Drink latte = new Drink("Latte", 4.50, "Coffee");
-        String expected = new StringBuilder()
-                .append(Drink.class.getCanonicalName())
-                .append("{name=Latte, price=4.5, category=Coffee}")
-                .toString();
+        String expected = "Latte Price: $4.5 Category: Coffee";
         assertEquals(expected, latte.toString());
     }
 }

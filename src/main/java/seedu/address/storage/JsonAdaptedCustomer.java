@@ -41,7 +41,7 @@ class JsonAdaptedCustomer {
     private final String customerId;
     private final String rewardPoints;
     private final String visitCount;
-    private final String favoriteItem;
+    private final String favouriteItem;
     private final String totalSpent;
 
     /**
@@ -57,7 +57,7 @@ class JsonAdaptedCustomer {
                                @JsonProperty("customerId") String customerId,
                                @JsonProperty("rewardPoints") String rewardPoints,
                                @JsonProperty("visitCount") String visitCount,
-                               @JsonProperty("favoriteItem") String favoriteItem,
+                               @JsonProperty("favouriteItem") String favouriteItem,
                                @JsonProperty("totalSpent") String totalSpent) {
         this.name = name;
         this.phone = phone;
@@ -70,7 +70,7 @@ class JsonAdaptedCustomer {
         this.customerId = customerId;
         this.rewardPoints = rewardPoints;
         this.visitCount = visitCount;
-        this.favoriteItem = favoriteItem;
+        this.favouriteItem = favouriteItem;
         this.totalSpent = totalSpent;
     }
 
@@ -89,7 +89,7 @@ class JsonAdaptedCustomer {
         customerId = source.getCustomerId().value;
         rewardPoints = source.getRewardPoints().value;
         visitCount = source.getVisitCount().value;
-        favoriteItem = source.getFavoriteItem().value;
+        favouriteItem = source.getFavouriteItem().value;
         totalSpent = source.getTotalSpent().value;
     }
 
@@ -165,13 +165,13 @@ class JsonAdaptedCustomer {
         }
         final VisitCount modelVisitCount = new VisitCount(visitCount);
 
-        if (favoriteItem == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Favorite Item"));
+        if (favouriteItem == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Favourite Item"));
         }
-        if (!FavouriteItem.isValidFavouriteItem(favoriteItem)) {
+        if (!FavouriteItem.isValidFavouriteItem(favouriteItem)) {
             throw new IllegalValueException(FavouriteItem.MESSAGE_CONSTRAINTS);
         }
-        final FavouriteItem modelFavoriteItem = new FavouriteItem(favoriteItem);
+        final FavouriteItem modelFavouriteItem = new FavouriteItem(favouriteItem);
 
         if (totalSpent == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Total Spent"));
@@ -183,7 +183,7 @@ class JsonAdaptedCustomer {
 
         final Set<Tag> modelTags = new HashSet<>(customerTags);
         return new Customer(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags,
-                modelCustomerId, modelRewardPoints, modelVisitCount, modelFavoriteItem, modelTotalSpent);
+                modelCustomerId, modelRewardPoints, modelVisitCount, modelFavouriteItem, modelTotalSpent);
     }
 
 }

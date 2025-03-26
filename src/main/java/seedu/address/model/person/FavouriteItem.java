@@ -14,7 +14,7 @@ public class FavouriteItem {
     /*
      * No strict validation for favourite items as it can take any value.
      */
-    public static final String VALIDATION_REGEX = ".*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String value;
 

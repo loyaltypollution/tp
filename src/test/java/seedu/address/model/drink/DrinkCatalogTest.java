@@ -11,6 +11,8 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.DrinkCatalog;
+
 public class DrinkCatalogTest {
 
     private final DrinkCatalog drinkCatalog = new DrinkCatalog();

@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CUSTOMER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DRINKNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_FAVORITE_ITEM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FAVOURITE_ITEM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOURS_WORKED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERFORMANCE_RATING;
@@ -32,6 +32,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditCustomerDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 
@@ -64,11 +65,36 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
+    // 'a' not allowed in phones
+    public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a";
+    // missing '@' symbol
+    public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo";
+    // empty string not allowed for addresses
+    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS;
+    // '*' not allowed in tags
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*";
+    // '@' not allowed in staff IDs
+    public static final String INVALID_STAFF_ID_DESC = " " + PREFIX_STAFF_ID + "S12@34";
+    // empty string not allowed for roles
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE;
+    // invalid time format
+    public static final String INVALID_SHIFT_DESC = " " + PREFIX_SHIFT_TIMING + "25pm-10pm";
+    // negative hours not allowed
+    public static final String INVALID_HOURS_DESC = " " + PREFIX_HOURS_WORKED + "-5";
+    // rating out of range (1-5)
+    public static final String INVALID_RATING_DESC = " " + PREFIX_PERFORMANCE_RATING + "6.0";
+    // '#' not allowed in customer IDs
+    public static final String INVALID_CUSTOMER_ID_DESC = " " + PREFIX_CUSTOMER_ID + "C12#45";
+    // negative reward points not allowed
+    public static final String INVALID_REWARD_POINTS_DESC = " " + PREFIX_REWARD_POINTS + "-100";
+    // negative visit count not allowed
+    public static final String INVALID_VISIT_COUNT_DESC = " " + PREFIX_VISIT_COUNT + "-1";
+    // empty string not allowed for favourite items
+    public static final String INVALID_FAVOURITE_ITEM_DESC = " " + PREFIX_FAVOURITE_ITEM;
+    // negative total spent not allowed
+    public static final String INVALID_TOTAL_SPENT_DESC = " " + PREFIX_TOTAL_SPENT + "-50.0";
 
     public static final String VALID_NAME_ALEX = "Alex Tan";
     public static final String VALID_NAME_BEN = "Ben Lim";
@@ -126,7 +152,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_STUDENT = "student";
     public static final String VALID_REWARD_POINTS_JAMES = "200";
     public static final String VALID_VISIT_COUNT_JAMES = "12";
-    public static final String VALID_FAVORITE_ITEM_JAMES = "Flat White";
+    public static final String VALID_FAVOURITE_ITEM_JAMES = "Flat White";
     public static final String VALID_TOTAL_SPENT_JAMES = "155.75";
     public static final String VALID_RATING_JAMES = "5";
     public static final String VALID_CUSTOMER_ID_JAMES = "C45678";
@@ -141,7 +167,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_NEW = "new";
     public static final String VALID_REWARD_POINTS_OLIVIA = "75";
     public static final String VALID_VISIT_COUNT_OLIVIA = "3";
-    public static final String VALID_FAVORITE_ITEM_OLIVIA = "Green Tea Latte";
+    public static final String VALID_FAVOURITE_ITEM_OLIVIA = "Green Tea Latte";
     public static final String VALID_TOTAL_SPENT_OLIVIA = "42.90";
     public static final String VALID_CUSTOMER_ID_OLIVIA = "C12345";
 
@@ -162,8 +188,8 @@ public class CommandTestUtil {
     public static final String REWARD_POINTS_DESC_OLIVIA = " " + PREFIX_REWARD_POINTS + VALID_REWARD_POINTS_OLIVIA;
     public static final String VISIT_COUNT_DESC_JAMES = " " + PREFIX_VISIT_COUNT + VALID_VISIT_COUNT_JAMES;
     public static final String VISIT_COUNT_DESC_OLIVIA = " " + PREFIX_VISIT_COUNT + VALID_VISIT_COUNT_OLIVIA;
-    public static final String FAVORITE_ITEM_DESC_JAMES = " " + PREFIX_FAVORITE_ITEM + VALID_FAVORITE_ITEM_JAMES;
-    public static final String FAVORITE_ITEM_DESC_OLIVIA = " " + PREFIX_FAVORITE_ITEM + VALID_FAVORITE_ITEM_OLIVIA;
+    public static final String FAVOURITE_ITEM_DESC_JAMES = " " + PREFIX_FAVOURITE_ITEM + VALID_FAVOURITE_ITEM_JAMES;
+    public static final String FAVOURITE_ITEM_DESC_OLIVIA = " " + PREFIX_FAVOURITE_ITEM + VALID_FAVOURITE_ITEM_OLIVIA;
     public static final String TOTAL_SPENT_DESC_JAMES = " " + PREFIX_TOTAL_SPENT + VALID_TOTAL_SPENT_JAMES;
     public static final String TOTAL_SPENT_DESC_OLIVIA = " " + PREFIX_TOTAL_SPENT + VALID_TOTAL_SPENT_OLIVIA;
 
@@ -174,6 +200,8 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
     public static final EditStaffCommand.EditStaffDescriptor DESC_ALEX;
     public static final EditStaffCommand.EditStaffDescriptor DESC_BEN;
+    public static final EditCustomerCommand.EditCustomerDescriptor DESC_JAMES;
+    public static final EditCustomerCommand.EditCustomerDescriptor DESC_OLIVIA;
 
     // Drink-related constants
     public static final String VALID_NAME_LATTE = "Latte";
@@ -211,6 +239,16 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_MANAGER).withStaffId(VALID_STAFF_ID_BEN).withRole(VALID_ROLE_BEN)
                 .withShiftTiming(VALID_SHIFT_BEN).withHoursWorked(VALID_HOURS_BEN)
                 .withPerformanceRating(VALID_RATING_BEN).build();
+        DESC_JAMES = new EditCustomerDescriptorBuilder().withName(VALID_NAME_JAMES)
+            .withPhone(VALID_PHONE_JAMES).withEmail(VALID_EMAIL_JAMES).withAddress(VALID_ADDRESS_JAMES)
+            .withTags(VALID_TAG_STUDENT).withCustomerId(VALID_CUSTOMER_ID_JAMES)
+            .withRewardPoints(VALID_REWARD_POINTS_JAMES).withVisitCount(VALID_VISIT_COUNT_JAMES)
+            .withFavouriteItem(VALID_FAVOURITE_ITEM_JAMES).withTotalSpent(VALID_TOTAL_SPENT_JAMES).build();
+        DESC_OLIVIA = new EditCustomerDescriptorBuilder().withName(VALID_NAME_OLIVIA)
+            .withPhone(VALID_PHONE_OLIVIA).withEmail(VALID_EMAIL_OLIVIA).withAddress(VALID_ADDRESS_OLIVIA)
+            .withTags(VALID_TAG_NEW).withCustomerId(VALID_CUSTOMER_ID_OLIVIA)
+            .withRewardPoints(VALID_REWARD_POINTS_OLIVIA).withVisitCount(VALID_VISIT_COUNT_OLIVIA)
+            .withFavouriteItem(VALID_FAVOURITE_ITEM_OLIVIA).withTotalSpent(VALID_TOTAL_SPENT_OLIVIA).build();
     }
 
     /**
@@ -283,4 +321,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredStaffList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the customer at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showCustomerAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredCustomerList().size());
+
+        Person customer = model.getFilteredCustomerList().get(targetIndex.getZeroBased());
+        final String[] splitName = customer.getName().fullName.split("\\s+");
+        model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredCustomerList().size());
+    }
 }

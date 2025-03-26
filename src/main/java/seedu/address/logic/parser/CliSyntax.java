@@ -24,14 +24,15 @@ public class CliSyntax {
     public static final Prefix PREFIX_CUSTOMER_ID = new Prefix("cid/");
     public static final Prefix PREFIX_REWARD_POINTS = new Prefix("rp/");
     public static final Prefix PREFIX_VISIT_COUNT = new Prefix("vc/");
-    public static final Prefix PREFIX_FAVORITE_ITEM = new Prefix("fi/");
+    public static final Prefix PREFIX_FAVOURITE_ITEM = new Prefix("fi/");
     public static final Prefix PREFIX_TOTAL_SPENT = new Prefix("ts/");
 
-    // Prefixes for addPoints command
-    public static final Prefix PREFIX_INDEX = new Prefix("ind/");
+    // Prefixes for purchase command
+    public static final Prefix PREFIX_REDEEM = new Prefix("redeem/");
     public static final Prefix PREFIX_POINTS = new Prefix("pts/");
+    public static final Prefix PREFIX_INDEX = new Prefix("ind/");
 
-    // Prefixes for addPoints command
+    // Prefixes for addHours command
     public static final Prefix PREFIX_HOURS = new Prefix("h/");
 
     // Drinks prefixes

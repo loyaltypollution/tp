@@ -12,7 +12,6 @@ import seedu.address.model.person.Customer;
  */
 public class TypicalCustomers {
 
-
     public static final Customer JAMES = new CustomerBuilder().withName("James Wilson")
         .withCustomerId("C10012")
         .withAddress("45 Orchard Road, #12-34")
@@ -21,9 +20,8 @@ public class TypicalCustomers {
         .withRemark("Prefers decaf")
         .withRewardPoints("200")
         .withVisitCount("12")
-        .withFavoriteItem("Flat White")
+        .withFavouriteItem("Flat White")
         .withTotalSpent("155.75")
-
         .withTags("regular", "student").build();
 
     public static final Customer OLIVIA = new CustomerBuilder().withName("Olivia Chen")
@@ -34,7 +32,7 @@ public class TypicalCustomers {
             .withRemark("Birthday in March")
             .withRewardPoints("75")
             .withVisitCount("3")
-            .withFavoriteItem("Green Tea Latte")
+            .withFavouriteItem("Green Tea Latte")
             .withTotalSpent("42.90")
             .withTags("new", "student").build();
 
@@ -44,11 +42,7 @@ public class TypicalCustomers {
      * Returns a list of all typical customers for testing.
      */
     public static List<Customer> getTypicalCustomers() {
-        return new ArrayList<>(Arrays.asList(
-                JAMES,
-                OLIVIA
-                // Add other customers here
-        ));
+        return new ArrayList<>(Arrays.asList(JAMES, OLIVIA));
     }
 
     /**

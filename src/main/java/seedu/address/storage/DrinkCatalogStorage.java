@@ -4,10 +4,11 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataLoadingException;
+import seedu.address.model.DrinkCatalog;
 import seedu.address.model.drink.ReadOnlyDrinkCatalog;
 
 /**
- * Represents a storage for {@link seedu.address.model.drink.DrinkCatalog}.
+ * Represents a storage for {@link DrinkCatalog}.
  */
 public interface DrinkCatalogStorage {
 

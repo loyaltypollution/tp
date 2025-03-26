@@ -1,7 +1,7 @@
 ---
   layout: default.md
   title: "Setting up and getting started"
-  pageNav: 3
+  pageNav: 4
 ---
 
 # Setting up and getting started

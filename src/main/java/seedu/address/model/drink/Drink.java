@@ -4,8 +4,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
-import seedu.address.commons.util.ToStringBuilder;
-
 /**
  * Represents a Drink in the café management system.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -110,10 +108,6 @@ public class Drink {
 
     @Override
     public String toString() {
-        return new ToStringBuilder(this)
-                .add("name", name)
-                .add("price", price)
-                .add("category", category)
-                .toString();
+        return getName() + " Price: $" + getPrice() + " Category: " + getCategory();
     }
 }

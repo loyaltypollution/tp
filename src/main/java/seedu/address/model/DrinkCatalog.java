@@ -1,10 +1,13 @@
-package seedu.address.model.drink;
+package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.drink.Drink;
+import seedu.address.model.drink.ReadOnlyDrinkCatalog;
+import seedu.address.model.drink.UniqueDrinkList;
 
 /**
  * Wraps all data at the drink-catalog level.
