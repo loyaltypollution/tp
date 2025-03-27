@@ -201,7 +201,7 @@ public class AddStaffCommandTest {
         }
 
         @Override
-        public boolean hasCustomer(Customer customer) {
+        public boolean hasPerson(Customer customer) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -216,7 +216,7 @@ public class AddStaffCommandTest {
         }
 
         @Override
-        public void setCustomer(Customer target, Customer editedCustomer) {
+        public void setPerson(Customer target, Customer editedCustomer) {
             throw new AssertionError("This method should not be called.");
         }
         @Override

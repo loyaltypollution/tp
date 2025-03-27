@@ -157,19 +157,19 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasCustomer_nullCustomer_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasCustomer(null));
+    public void hasPerson_nullCustomer_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
 
     @Test
-    public void hasCustomer_customerNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasCustomer(JAMES));
+    public void hasPerson_customerNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPerson(JAMES));
     }
 
     @Test
-    public void hasCustomer_customerInAddressBook_returnsTrue() {
+    public void hasPerson_customerInAddressBook_returnsTrue() {
         addressBook.addCustomer(JAMES);
-        assertTrue(addressBook.hasCustomer(JAMES));
+        assertTrue(addressBook.hasPerson(JAMES));
     }
 
     @Test

@@ -154,7 +154,7 @@ public class PurchaseCommand extends Command {
         // Create updated customer with reduced points but same total spent
         Customer updatedCustomer = createUpdatedCustomerForRedemption(customerToUpdate, pointsNeeded);
 
-        model.setCustomer(customerToUpdate, updatedCustomer);
+        model.setPerson(customerToUpdate, updatedCustomer);
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
 
         return new CommandResult(String.format(MESSAGE_REDEMPTION_SUCCESS,

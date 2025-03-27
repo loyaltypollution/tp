@@ -92,7 +92,7 @@ class JsonSerializableAddressBook {
 
         for (JsonAdaptedCustomer jsonAdaptedCustomer : customers) {
             Customer customer = jsonAdaptedCustomer.toModelType();
-            if (addressBook.hasCustomer(customer)) {
+            if (addressBook.hasPerson(customer)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_CUSTOMER);
             }
             addressBook.addPerson(customer);
