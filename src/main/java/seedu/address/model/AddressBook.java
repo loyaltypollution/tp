@@ -2,9 +2,6 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.person.Customer;
@@ -47,7 +44,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Person> persons) {
+    public void setPersons(FilteredList<? extends Person> persons) {
         this.persons.setPersons(persons);
     }
 
@@ -56,9 +53,12 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-        setPersons(newData.getCustomerList());
-        setPersons(newData.getPersonList());
-        setPersons(newData.getStaffList());
+        for (Person person: newData.getCustomerList()) {
+            addPerson(person);
+        }
+        for (Person person: newData.getStaffList()) {
+            addPerson(person);
+        }
     }
 
     //// person-level operations
@@ -106,19 +106,12 @@ public class AddressBook implements ReadOnlyAddressBook {
                 .toString();
     }
 
-    @Override
-    public FilteredList<Person> getPersonList() {
-        return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
-    public FilteredList<Staff> getStaffList() {
-        return persons.asUnmodifiableObservableList();
-    }
-
-    @Override
     public FilteredList<Customer> getCustomerList() {
-        return persons.asUnmodifiableObservableList();
+        return persons.getFilteredList(Customer.class);
+    }
+
+    public FilteredList<Staff> getStaffList() {
+        return persons.getFilteredList(Staff.class);
     }
 
     @Override
