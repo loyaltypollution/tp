@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Drink's name.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}.
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}.
  */
 public class DrinkName {
 
@@ -19,7 +19,7 @@ public class DrinkName {
      */
     public DrinkName(String drinkName) {
         requireNonNull(drinkName);
-        if (!isValidName(drinkName)) {
+        if (!isValidValue(drinkName)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         this.drinkName = drinkName;
@@ -28,7 +28,7 @@ public class DrinkName {
     /**
      * Returns true if a given string is a valid name.
      */
-    public static boolean isValidName(String test) {
+    public static boolean isValidValue(String test) {
         return test != null && !test.trim().isEmpty();
     }
 

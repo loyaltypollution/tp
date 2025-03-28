@@ -9,15 +9,15 @@ import org.junit.jupiter.api.Test;
 public class FileUtilTest {
 
     @Test
-    public void isValidPath() {
+    public void isValidValue() {
         // valid path
-        assertTrue(FileUtil.isValidPath("valid/file/path"));
+        assertTrue(FileUtil.isValidValue("valid/file/path"));
 
         // invalid path
-        assertFalse(FileUtil.isValidPath("a\0"));
+        assertFalse(FileUtil.isValidValue("a\0"));
 
         // null path -> throws NullPointerException
-        assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
+        assertThrows(NullPointerException.class, () -> FileUtil.isValidValue(null));
     }
 
 }

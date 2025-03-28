@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's remarks in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidRemark(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}
  */
 public class Remark {
 
@@ -26,14 +26,14 @@ public class Remark {
      */
     public Remark(String remark) {
         requireNonNull(remark);
-        checkArgument(isValidRemark(remark), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidValue(remark), MESSAGE_CONSTRAINTS);
         value = remark;
     }
 
     /**
      * Returns true if a given string is a valid email.
      */
-    public static boolean isValidRemark(String test) {
+    public static boolean isValidValue(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

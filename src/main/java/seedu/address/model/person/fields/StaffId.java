@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Staff's ID in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidStaffId(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}
  */
 public class StaffId {
 
@@ -26,14 +26,14 @@ public class StaffId {
      */
     public StaffId(String staffId) {
         requireNonNull(staffId);
-        checkArgument(isValidStaffId(staffId), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidValue(staffId), MESSAGE_CONSTRAINTS);
         value = staffId;
     }
 
     /**
      * Returns true if a given string is a valid staff ID.
      */
-    public static boolean isValidStaffId(String test) {
+    public static boolean isValidValue(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

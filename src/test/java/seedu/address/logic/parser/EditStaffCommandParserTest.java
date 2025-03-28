@@ -48,10 +48,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditStaffCommand;
 import seedu.address.logic.parser.descriptors.EditStaffDescriptor;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditStaffDescriptorBuilder;
 

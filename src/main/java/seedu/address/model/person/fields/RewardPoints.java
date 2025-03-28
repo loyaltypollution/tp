@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Customer's Reward Points in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidRewardPoints(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}
  */
 public class RewardPoints {
 
@@ -26,14 +26,14 @@ public class RewardPoints {
      */
     public RewardPoints(String points) {
         requireNonNull(points);
-        checkArgument(isValidRewardPoints(points), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidValue(points), MESSAGE_CONSTRAINTS);
         this.value = points;
     }
 
     /**
      * Returns true if a given string is a valid non-negative integer.
      */
-    public static boolean isValidRewardPoints(String test) {
+    public static boolean isValidValue(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

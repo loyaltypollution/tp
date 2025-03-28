@@ -6,6 +6,11 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.fields.HoursWorked;
+import seedu.address.model.person.fields.PerformanceRating;
+import seedu.address.model.person.fields.Role;
+import seedu.address.model.person.fields.ShiftTiming;
+import seedu.address.model.person.fields.StaffId;
 import seedu.address.model.tag.Tag;
 
 /**

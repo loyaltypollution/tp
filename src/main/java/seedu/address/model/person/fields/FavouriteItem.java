@@ -1,18 +1,18 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Customer's Favourite Item in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidFavouriteItem(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}
  */
 public class FavouriteItem {
 
-    public static final String MESSAGE_CONSTRAINTS = "Favourite items can take any values, and it should not be blank";
+    public static String MESSAGE_CONSTRAINTS = "Favourite items can take any values, and it should not be blank";
 
     /*
-     * No strict validation for favourite items as it can take any value.
+     * FavouriteItem must be non-empty.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
@@ -25,14 +25,14 @@ public class FavouriteItem {
      */
     public FavouriteItem(String favouriteItem) {
         requireNonNull(favouriteItem);
-        checkArgument(isValidFavouriteItem(favouriteItem), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidValue(favouriteItem), MESSAGE_CONSTRAINTS);
         value = favouriteItem;
     }
 
     /**
      * Returns true if a given string is a valid favourite item.
      */
-    public static boolean isValidFavouriteItem(String test) {
+    public static boolean isValidValue(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

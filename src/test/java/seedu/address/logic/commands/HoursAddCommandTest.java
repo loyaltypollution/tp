@@ -18,17 +18,17 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.HoursWorked;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PerformanceRating;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Role;
-import seedu.address.model.person.ShiftTiming;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.HoursWorked;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.PerformanceRating;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Remark;
+import seedu.address.model.person.fields.Role;
+import seedu.address.model.person.fields.ShiftTiming;
 import seedu.address.model.person.Staff;
-import seedu.address.model.person.StaffId;
+import seedu.address.model.person.fields.StaffId;
 
 public class HoursAddCommandTest {
     private Model model;

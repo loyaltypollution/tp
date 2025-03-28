@@ -9,21 +9,21 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.CustomerId;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.FavouriteItem;
-import seedu.address.model.person.HoursWorked;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PerformanceRating;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.RewardPoints;
-import seedu.address.model.person.Role;
-import seedu.address.model.person.ShiftTiming;
-import seedu.address.model.person.StaffId;
-import seedu.address.model.person.TotalSpent;
-import seedu.address.model.person.VisitCount;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.CustomerId;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.HoursWorked;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.PerformanceRating;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Remark;
+import seedu.address.model.person.fields.RewardPoints;
+import seedu.address.model.person.fields.Role;
+import seedu.address.model.person.fields.ShiftTiming;
+import seedu.address.model.person.fields.StaffId;
+import seedu.address.model.person.fields.TotalSpent;
+import seedu.address.model.person.fields.VisitCount;
+import seedu.address.model.person.fields.FavouriteItem;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -55,7 +55,7 @@ public class ParserUtil {
     public static Name parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
+        if (!Name.isValidValue(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
@@ -70,7 +70,7 @@ public class ParserUtil {
     public static Phone parsePhone(String phone) throws ParseException {
         requireNonNull(phone);
         String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
+        if (!Phone.isValidValue(trimmedPhone)) {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
@@ -85,7 +85,7 @@ public class ParserUtil {
     public static Address parseAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
+        if (!Address.isValidValue(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Address(trimmedAddress);
@@ -100,7 +100,7 @@ public class ParserUtil {
     public static Remark parseRemark(String remark) throws ParseException {
         requireNonNull(remark);
         String trimmedRemark = remark.trim();
-        if (!Remark.isValidRemark(trimmedRemark)) {
+        if (!Remark.isValidValue(trimmedRemark)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
         return new Remark(trimmedRemark);
@@ -116,7 +116,7 @@ public class ParserUtil {
     public static Email parseEmail(String email) throws ParseException {
         requireNonNull(email);
         String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
+        if (!Email.isValidValue(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
@@ -131,7 +131,7 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
+        if (!Tag.isValidValue(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
@@ -157,7 +157,7 @@ public class ParserUtil {
     public static RewardPoints parseRewardPoints(String rewardPoints) throws ParseException {
         requireNonNull(rewardPoints);
         String trimmedRewardPoints = rewardPoints.trim();
-        if (!RewardPoints.isValidRewardPoints(trimmedRewardPoints)) {
+        if (!RewardPoints.isValidValue(trimmedRewardPoints)) {
             throw new ParseException(RewardPoints.MESSAGE_CONSTRAINTS);
         }
         return new RewardPoints(trimmedRewardPoints);
@@ -172,7 +172,7 @@ public class ParserUtil {
     public static VisitCount parseVisitCount(String visitCount) throws ParseException {
         requireNonNull(visitCount);
         String trimmedVisitCount = visitCount.trim();
-        if (!VisitCount.isValidVisitCount(trimmedVisitCount)) {
+        if (!VisitCount.isValidValue(trimmedVisitCount)) {
             throw new ParseException(VisitCount.MESSAGE_CONSTRAINTS);
         }
         return new VisitCount(trimmedVisitCount);
@@ -187,7 +187,7 @@ public class ParserUtil {
     public static FavouriteItem parseFavouriteItem(String favouriteItem) throws ParseException {
         requireNonNull(favouriteItem);
         String trimmedFavouriteItem = favouriteItem.trim();
-        if (!FavouriteItem.isValidFavouriteItem(trimmedFavouriteItem)) {
+        if (!FavouriteItem.isValidValue(trimmedFavouriteItem)) {
             throw new ParseException(FavouriteItem.MESSAGE_CONSTRAINTS);
         }
         return new FavouriteItem(trimmedFavouriteItem);
@@ -202,7 +202,7 @@ public class ParserUtil {
     public static TotalSpent parseTotalSpent(String totalSpent) throws ParseException {
         requireNonNull(totalSpent);
         String trimmedTotalSpent = totalSpent.trim();
-        if (!TotalSpent.isValidTotalSpent(trimmedTotalSpent)) {
+        if (!TotalSpent.isValidValue(trimmedTotalSpent)) {
             throw new ParseException(TotalSpent.MESSAGE_CONSTRAINTS);
         }
         return new TotalSpent(trimmedTotalSpent);
@@ -217,7 +217,7 @@ public class ParserUtil {
     public static CustomerId parseCustomerId(String customerId) throws ParseException {
         requireNonNull(customerId);
         String trimmedCustomerId = customerId.trim();
-        if (!CustomerId.isValidCustomerId(trimmedCustomerId)) {
+        if (!CustomerId.isValidValue(trimmedCustomerId)) {
             throw new ParseException(CustomerId.MESSAGE_CONSTRAINTS);
         }
         return new CustomerId(trimmedCustomerId);
@@ -232,7 +232,7 @@ public class ParserUtil {
     public static StaffId parseStaffId(String staffId) throws ParseException {
         requireNonNull(staffId);
         String trimmedStaffId = staffId.trim();
-        if (!StaffId.isValidStaffId(trimmedStaffId)) {
+        if (!StaffId.isValidValue(trimmedStaffId)) {
             throw new ParseException(StaffId.MESSAGE_CONSTRAINTS);
         }
         return new StaffId(trimmedStaffId);
@@ -247,7 +247,7 @@ public class ParserUtil {
     public static Role parseRole(String role) throws ParseException {
         requireNonNull(role);
         String trimmedRole = role.trim();
-        if (!Role.isValidRole(trimmedRole)) {
+        if (!Role.isValidValue(trimmedRole)) {
             throw new ParseException(Role.MESSAGE_CONSTRAINTS);
         }
         return new Role(trimmedRole);
@@ -262,7 +262,7 @@ public class ParserUtil {
     public static ShiftTiming parseShiftTiming(String shiftTiming) throws ParseException {
         requireNonNull(shiftTiming);
         String trimmedShiftTiming = shiftTiming.trim();
-        if (!ShiftTiming.isValidShiftTiming(trimmedShiftTiming)) {
+        if (!ShiftTiming.isValidValue(trimmedShiftTiming)) {
             throw new ParseException(ShiftTiming.MESSAGE_CONSTRAINTS);
         }
         return new ShiftTiming(trimmedShiftTiming);
@@ -277,7 +277,7 @@ public class ParserUtil {
     public static HoursWorked parseHoursWorked(String hoursWorked) throws ParseException {
         requireNonNull(hoursWorked);
         String trimmedHoursWorked = hoursWorked.trim();
-        if (!HoursWorked.isValidHoursWorked(trimmedHoursWorked)) {
+        if (!HoursWorked.isValidValue(trimmedHoursWorked)) {
             throw new ParseException(HoursWorked.MESSAGE_CONSTRAINTS);
         }
         return new HoursWorked(trimmedHoursWorked);
@@ -292,7 +292,7 @@ public class ParserUtil {
     public static PerformanceRating parsePerformanceRating(String performanceRating) throws ParseException {
         requireNonNull(performanceRating);
         String trimmedPerformanceRating = performanceRating.trim();
-        if (!PerformanceRating.isValidPerformanceRating(trimmedPerformanceRating)) {
+        if (!PerformanceRating.isValidValue(trimmedPerformanceRating)) {
             throw new ParseException(PerformanceRating.MESSAGE_CONSTRAINTS);
         }
         return new PerformanceRating(trimmedPerformanceRating);

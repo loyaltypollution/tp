@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's role in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}
  */
 public class Role {
 
@@ -26,14 +26,14 @@ public class Role {
      */
     public Role(String role) {
         requireNonNull(role);
-        checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidValue(role), MESSAGE_CONSTRAINTS);
         value = role;
     }
 
     /**
      * Returns true if a given string is a valid role.
      */
-    public static boolean isValidRole(String test) {
+    public static boolean isValidValue(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

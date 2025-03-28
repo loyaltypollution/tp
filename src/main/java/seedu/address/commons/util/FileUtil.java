@@ -22,7 +22,7 @@ public class FileUtil {
      * otherwise returns false.
      * @param path A string representing the file path. Cannot be null.
      */
-    public static boolean isValidPath(String path) {
+    public static boolean isValidValue(String path) {
         try {
             Paths.get(path);
         } catch (InvalidPathException ipe) {

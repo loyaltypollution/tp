@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.CustomerId;
-import seedu.address.model.person.FavouriteItem;
-import seedu.address.model.person.RewardPoints;
-import seedu.address.model.person.TotalSpent;
-import seedu.address.model.person.VisitCount;
+import seedu.address.model.person.fields.CustomerId;
+import seedu.address.model.person.fields.RewardPoints;
+import seedu.address.model.person.fields.TotalSpent;
+import seedu.address.model.person.fields.VisitCount;
+import seedu.address.model.person.fields.FavouriteItem;
 
 /**
  * Stores the details to edit the customer with. Each non-empty field value

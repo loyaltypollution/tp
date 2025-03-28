@@ -20,22 +20,22 @@ public class StaffIdTest {
     }
 
     @Test
-    public void isValidStaffId() {
+    public void isValidValue() {
         // null staff ID
-        assertThrows(NullPointerException.class, () -> StaffId.isValidStaffId(null));
+        assertThrows(NullPointerException.class, () -> StaffId.isValidValue(null));
 
         // invalid staff IDs
-        assertFalse(StaffId.isValidStaffId("")); // empty string
-        assertFalse(StaffId.isValidStaffId(" ")); // spaces only
-        assertFalse(StaffId.isValidStaffId("S")); // missing digits
-        assertFalse(StaffId.isValidStaffId("1234")); // missing 'S' prefix
-        assertFalse(StaffId.isValidStaffId("s1001")); // lowercase 's'
-        assertFalse(StaffId.isValidStaffId("S10A1")); // non-numeric characters after 'S'
+        assertFalse(StaffId.isValidValue("")); // empty string
+        assertFalse(StaffId.isValidValue(" ")); // spaces only
+        assertFalse(StaffId.isValidValue("S")); // missing digits
+        assertFalse(StaffId.isValidValue("1234")); // missing 'S' prefix
+        assertFalse(StaffId.isValidValue("s1001")); // lowercase 's'
+        assertFalse(StaffId.isValidValue("S10A1")); // non-numeric characters after 'S'
 
         // valid staff IDs
-        assertTrue(StaffId.isValidStaffId("S1")); // minimal valid case
-        assertTrue(StaffId.isValidStaffId("S100"));
-        assertTrue(StaffId.isValidStaffId("S99999"));
+        assertTrue(StaffId.isValidValue("S1")); // minimal valid case
+        assertTrue(StaffId.isValidValue("S100"));
+        assertTrue(StaffId.isValidValue("S99999"));
     }
 
     @Test

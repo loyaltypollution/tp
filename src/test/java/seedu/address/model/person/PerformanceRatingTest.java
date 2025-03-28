@@ -20,24 +20,24 @@ public class PerformanceRatingTest {
     }
 
     @Test
-    public void isValidPerformanceRating() {
+    public void isValidValue() {
         // null performance rating
-        assertThrows(NullPointerException.class, () -> PerformanceRating.isValidPerformanceRating(null));
+        assertThrows(NullPointerException.class, () -> PerformanceRating.isValidValue(null));
 
         // invalid performance ratings
-        assertFalse(PerformanceRating.isValidPerformanceRating("")); // empty string
-        assertFalse(PerformanceRating.isValidPerformanceRating(" ")); // spaces only
-        assertFalse(PerformanceRating.isValidPerformanceRating("abc")); // non-numeric
-        assertFalse(PerformanceRating.isValidPerformanceRating("-1")); // negative number
-        assertFalse(PerformanceRating.isValidPerformanceRating("5.1")); // greater than 5.0
-        assertFalse(PerformanceRating.isValidPerformanceRating("6")); // greater than 5
-        assertFalse(PerformanceRating.isValidPerformanceRating("3.14159")); // too many decimal places
+        assertFalse(PerformanceRating.isValidValue("")); // empty string
+        assertFalse(PerformanceRating.isValidValue(" ")); // spaces only
+        assertFalse(PerformanceRating.isValidValue("abc")); // non-numeric
+        assertFalse(PerformanceRating.isValidValue("-1")); // negative number
+        assertFalse(PerformanceRating.isValidValue("5.1")); // greater than 5.0
+        assertFalse(PerformanceRating.isValidValue("6")); // greater than 5
+        assertFalse(PerformanceRating.isValidValue("3.14159")); // too many decimal places
 
         // valid performance ratings
-        assertTrue(PerformanceRating.isValidPerformanceRating("0")); // lower boundary
-        assertTrue(PerformanceRating.isValidPerformanceRating("5.0")); // upper boundary
-        assertTrue(PerformanceRating.isValidPerformanceRating("3.5")); // valid decimal value
-        assertTrue(PerformanceRating.isValidPerformanceRating("4")); // whole number
+        assertTrue(PerformanceRating.isValidValue("0")); // lower boundary
+        assertTrue(PerformanceRating.isValidValue("5.0")); // upper boundary
+        assertTrue(PerformanceRating.isValidValue("3.5")); // valid decimal value
+        assertTrue(PerformanceRating.isValidValue("4")); // whole number
     }
 
     @Test

@@ -20,23 +20,23 @@ public class HoursWorkedTest {
     }
 
     @Test
-    public void isValidHoursWorked() {
+    public void isValidValue() {
         // null hours worked
-        assertThrows(NullPointerException.class, () -> HoursWorked.isValidHoursWorked(null));
+        assertThrows(NullPointerException.class, () -> HoursWorked.isValidValue(null));
 
         // invalid hours worked
-        assertFalse(HoursWorked.isValidHoursWorked("")); // empty string
-        assertFalse(HoursWorked.isValidHoursWorked(" ")); // spaces only
-        assertFalse(HoursWorked.isValidHoursWorked("abc")); // alphabets
-        assertFalse(HoursWorked.isValidHoursWorked("12a")); // alphanumeric
-        assertFalse(HoursWorked.isValidHoursWorked("-5")); // negative numbers
-        assertFalse(HoursWorked.isValidHoursWorked("3.5")); // decimal numbers
+        assertFalse(HoursWorked.isValidValue("")); // empty string
+        assertFalse(HoursWorked.isValidValue(" ")); // spaces only
+        assertFalse(HoursWorked.isValidValue("abc")); // alphabets
+        assertFalse(HoursWorked.isValidValue("12a")); // alphanumeric
+        assertFalse(HoursWorked.isValidValue("-5")); // negative numbers
+        assertFalse(HoursWorked.isValidValue("3.5")); // decimal numbers
 
         // valid hours worked
-        assertTrue(HoursWorked.isValidHoursWorked("0")); // zero is allowed
-        assertTrue(HoursWorked.isValidHoursWorked("1")); // minimum valid number
-        assertTrue(HoursWorked.isValidHoursWorked("40")); // typical work hours
-        assertTrue(HoursWorked.isValidHoursWorked("168")); // max possible in a week
+        assertTrue(HoursWorked.isValidValue("0")); // zero is allowed
+        assertTrue(HoursWorked.isValidValue("1")); // minimum valid number
+        assertTrue(HoursWorked.isValidValue("40")); // typical work hours
+        assertTrue(HoursWorked.isValidValue("168")); // max possible in a week
     }
 
     @Test

@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's shift timing in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidShiftTiming(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}
  */
 public class ShiftTiming {
 
@@ -26,14 +26,14 @@ public class ShiftTiming {
      */
     public ShiftTiming(String shiftTiming) {
         requireNonNull(shiftTiming);
-        checkArgument(isValidShiftTiming(shiftTiming), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidValue(shiftTiming), MESSAGE_CONSTRAINTS);
         value = shiftTiming;
     }
 
     /**
      * Returns true if a given string is a valid shift timing.
      */
-    public static boolean isValidShiftTiming(String test) {
+    public static boolean isValidValue(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

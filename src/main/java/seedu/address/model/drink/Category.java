@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Drink's category.
- * Guarantees: immutable; is valid as declared in {@link #isValidCategory(String)}.
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}.
  */
 public class Category {
 
@@ -19,7 +19,7 @@ public class Category {
      */
     public Category(String category) {
         requireNonNull(category);
-        if (!isValidCategory(category)) {
+        if (!isValidValue(category)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         this.category = category;
@@ -32,7 +32,7 @@ public class Category {
     /**
      * Returns true if a given string is a valid category.
      */
-    public static boolean isValidCategory(String test) {
+    public static boolean isValidValue(String test) {
         return test != null && !test.trim().isEmpty();
     }
 

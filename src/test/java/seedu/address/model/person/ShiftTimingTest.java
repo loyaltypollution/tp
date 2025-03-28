@@ -20,20 +20,20 @@ public class ShiftTimingTest {
     }
 
     @Test
-    public void isValidShiftTiming() {
+    public void isValidValue() {
         // null shift timing
-        assertThrows(NullPointerException.class, () -> ShiftTiming.isValidShiftTiming(null));
+        assertThrows(NullPointerException.class, () -> ShiftTiming.isValidValue(null));
 
         // invalid shift timings
-        assertFalse(ShiftTiming.isValidShiftTiming("")); // empty string
-        assertFalse(ShiftTiming.isValidShiftTiming(" ")); // single space
-        assertFalse(ShiftTiming.isValidShiftTiming("    ")); // multiple spaces
+        assertFalse(ShiftTiming.isValidValue("")); // empty string
+        assertFalse(ShiftTiming.isValidValue(" ")); // single space
+        assertFalse(ShiftTiming.isValidValue("    ")); // multiple spaces
 
         // valid shift timings
-        assertTrue(ShiftTiming.isValidShiftTiming("8am-4pm"));
-        assertTrue(ShiftTiming.isValidShiftTiming("10:00 - 18:00"));
-        assertTrue(ShiftTiming.isValidShiftTiming("Night shift"));
-        assertTrue(ShiftTiming.isValidShiftTiming("3PM-11PM"));
+        assertTrue(ShiftTiming.isValidValue("8am-4pm"));
+        assertTrue(ShiftTiming.isValidValue("10:00 - 18:00"));
+        assertTrue(ShiftTiming.isValidValue("Night shift"));
+        assertTrue(ShiftTiming.isValidValue("3PM-11PM"));
     }
 
     @Test

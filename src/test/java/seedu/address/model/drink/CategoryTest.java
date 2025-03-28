@@ -21,17 +21,17 @@ class CategoryTest {
     }
 
     @Test
-    void isValidCategory_validCases() {
-        assertTrue(Category.isValidCategory("Juice"));
-        assertTrue(Category.isValidCategory("Soft Drink"));
-        assertTrue(Category.isValidCategory("Tea"));
+    void isValidValue_validCases() {
+        assertTrue(Category.isValidValue("Juice"));
+        assertTrue(Category.isValidValue("Soft Drink"));
+        assertTrue(Category.isValidValue("Tea"));
     }
 
     @Test
-    void isValidCategory_invalidCases() {
-        assertFalse(Category.isValidCategory(null));
-        assertFalse(Category.isValidCategory(""));
-        assertFalse(Category.isValidCategory("   "));
+    void isValidValue_invalidCases() {
+        assertFalse(Category.isValidValue(null));
+        assertFalse(Category.isValidValue(""));
+        assertFalse(Category.isValidValue("   "));
     }
 
     @Test

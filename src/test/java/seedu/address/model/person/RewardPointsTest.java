@@ -30,18 +30,18 @@ public class RewardPointsTest {
     }
 
     @Test
-    public void isValidRewardPoints() {
+    public void isValidValue() {
         // Invalid cases
-        assertEquals(false, RewardPoints.isValidRewardPoints(""));
-        assertEquals(false, RewardPoints.isValidRewardPoints("-1"));
-        assertEquals(false, RewardPoints.isValidRewardPoints("abc"));
-        assertEquals(false, RewardPoints.isValidRewardPoints("10.5"));
-        assertEquals(false, RewardPoints.isValidRewardPoints(" 50"));
+        assertEquals(false, RewardPoints.isValidValue(""));
+        assertEquals(false, RewardPoints.isValidValue("-1"));
+        assertEquals(false, RewardPoints.isValidValue("abc"));
+        assertEquals(false, RewardPoints.isValidValue("10.5"));
+        assertEquals(false, RewardPoints.isValidValue(" 50"));
 
         // Valid cases
-        assertEquals(true, RewardPoints.isValidRewardPoints("0"));
-        assertEquals(true, RewardPoints.isValidRewardPoints("10"));
-        assertEquals(true, RewardPoints.isValidRewardPoints("1000"));
+        assertEquals(true, RewardPoints.isValidValue("0"));
+        assertEquals(true, RewardPoints.isValidValue("10"));
+        assertEquals(true, RewardPoints.isValidValue("1000"));
     }
 
     @Test

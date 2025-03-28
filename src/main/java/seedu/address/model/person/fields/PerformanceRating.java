@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's performance rating in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidPerformanceRating(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}
  */
 public class PerformanceRating {
 
@@ -27,14 +27,14 @@ public class PerformanceRating {
      */
     public PerformanceRating(String rating) {
         requireNonNull(rating);
-        checkArgument(isValidPerformanceRating(rating), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidValue(rating), MESSAGE_CONSTRAINTS);
         value = rating;
     }
 
     /**
      * Returns true if the given string is a valid performance rating between 0 and 5.0 inclusive.
      */
-    public static boolean isValidPerformanceRating(String test) {
+    public static boolean isValidValue(String test) {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         }

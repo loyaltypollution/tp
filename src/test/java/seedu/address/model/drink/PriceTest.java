@@ -16,17 +16,17 @@ class PriceTest {
     }
 
     @Test
-    void isValidPrice_validCases() {
-        assertTrue(Price.isValidPrice(0.01));
-        assertTrue(Price.isValidPrice(5.99));
-        assertTrue(Price.isValidPrice(100.0));
+    void isValidValue_validCases() {
+        assertTrue(Price.isValidValue(0.01));
+        assertTrue(Price.isValidValue(5.99));
+        assertTrue(Price.isValidValue(100.0));
     }
 
     @Test
-    void isValidPrice_invalidCases() {
-        assertFalse(Price.isValidPrice(0));
-        assertFalse(Price.isValidPrice(-1.0));
-        assertFalse(Price.isValidPrice(-50.0));
+    void isValidValue_invalidCases() {
+        assertFalse(Price.isValidValue(0));
+        assertFalse(Price.isValidValue(-1.0));
+        assertFalse(Price.isValidValue(-50.0));
     }
 
     @Test

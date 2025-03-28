@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Customer's Total Spent in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidTotalSpent(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}
  */
 public class TotalSpent {
 
@@ -28,14 +28,14 @@ public class TotalSpent {
      */
     public TotalSpent(String totalSpent) {
         requireNonNull(totalSpent);
-        checkArgument(isValidTotalSpent(totalSpent), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidValue(totalSpent), MESSAGE_CONSTRAINTS);
         value = totalSpent;
     }
 
     /**
      * Returns true if the given string is a valid total spent value with 1 or 2 decimal places.
      */
-    public static boolean isValidTotalSpent(String test) {
+    public static boolean isValidValue(String test) {
         if (!test.matches(VALIDATION_REGEX)) {
             return false;
         }

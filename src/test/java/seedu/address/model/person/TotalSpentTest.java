@@ -8,21 +8,21 @@ import org.junit.jupiter.api.Test;
 public class TotalSpentTest {
 
     @Test
-    public void isValidTotalSpent_validValues_returnsTrue() {
+    public void isValidValue_validValues_returnsTrue() {
         // valid total spent values
-        assertTrue(TotalSpent.isValidTotalSpent("0.0"));
-        assertTrue(TotalSpent.isValidTotalSpent("5.5"));
-        assertTrue(TotalSpent.isValidTotalSpent("12.34"));
-        assertTrue(TotalSpent.isValidTotalSpent("100.00"));
+        assertTrue(TotalSpent.isValidValue("0.0"));
+        assertTrue(TotalSpent.isValidValue("5.5"));
+        assertTrue(TotalSpent.isValidValue("12.34"));
+        assertTrue(TotalSpent.isValidValue("100.00"));
     }
 
     @Test
-    public void isValidTotalSpent_invalidValues_returnsFalse() {
+    public void isValidValue_invalidValues_returnsFalse() {
         // invalid total spent values
-        assertFalse(TotalSpent.isValidTotalSpent("0.123")); // More than 2 decimals
-        assertFalse(TotalSpent.isValidTotalSpent("-5.5")); // Negative number
-        assertFalse(TotalSpent.isValidTotalSpent("abc")); // Non-numeric input
-        assertFalse(TotalSpent.isValidTotalSpent("100.")); // Missing decimal places
+        assertFalse(TotalSpent.isValidValue("0.123")); // More than 2 decimals
+        assertFalse(TotalSpent.isValidValue("-5.5")); // Negative number
+        assertFalse(TotalSpent.isValidValue("abc")); // Non-numeric input
+        assertFalse(TotalSpent.isValidValue("100.")); // Missing decimal places
     }
 
     @Test

@@ -20,19 +20,19 @@ public class RoleTest {
     }
 
     @Test
-    public void isValidRole() {
+    public void isValidValue() {
         // null role
-        assertThrows(NullPointerException.class, () -> Role.isValidRole(null));
+        assertThrows(NullPointerException.class, () -> Role.isValidValue(null));
 
         // invalid roles
-        assertFalse(Role.isValidRole("")); // empty string
-        assertFalse(Role.isValidRole(" ")); // spaces only
+        assertFalse(Role.isValidValue("")); // empty string
+        assertFalse(Role.isValidValue(" ")); // spaces only
 
         // valid roles
-        assertTrue(Role.isValidRole("Barista"));
-        assertTrue(Role.isValidRole("Manager"));
-        assertTrue(Role.isValidRole("Cashier"));
-        assertTrue(Role.isValidRole("Head of Operations")); // multi-word role
+        assertTrue(Role.isValidValue("Barista"));
+        assertTrue(Role.isValidValue("Manager"));
+        assertTrue(Role.isValidValue("Cashier"));
+        assertTrue(Role.isValidValue("Head of Operations")); // multi-word role
     }
 
     @Test

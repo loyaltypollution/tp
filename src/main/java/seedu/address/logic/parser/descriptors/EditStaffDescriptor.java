@@ -5,11 +5,11 @@ import java.util.Optional;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.commons.util.ToStringBuilder;
-import seedu.address.model.person.HoursWorked;
-import seedu.address.model.person.PerformanceRating;
-import seedu.address.model.person.Role;
-import seedu.address.model.person.ShiftTiming;
-import seedu.address.model.person.StaffId;
+import seedu.address.model.person.fields.HoursWorked;
+import seedu.address.model.person.fields.PerformanceRating;
+import seedu.address.model.person.fields.Role;
+import seedu.address.model.person.fields.ShiftTiming;
+import seedu.address.model.person.fields.StaffId;
 
 /**
  * Stores the details to edit the staff with. Each non-empty field value

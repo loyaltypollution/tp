@@ -27,7 +27,7 @@ package "seedu.address.model.drink" {
         - {static} MESSAGE_CONSTRAINTS: String
         - category: String
         + getCategory(): String
-        + {static} isValidCategory(test: String): boolean
+        + {static} isValidValue(test: String): boolean
         + equals(Object): boolean
         + hashCode(): int
         + toString(): String
@@ -37,7 +37,7 @@ package "seedu.address.model.drink" {
         - {static} MESSAGE_CONSTRAINTS: String
         - drinkName: String
         + getDrinkName(): String
-        + {static} isValidName(test: String): boolean
+        + {static} isValidValue(test: String): boolean
         + equals(Object): boolean
         + hashCode(): int
         + toString(): String
@@ -47,7 +47,7 @@ package "seedu.address.model.drink" {
         - {static} MESSAGE_CONSTRAINTS: String
         - price: double
         + getPrice(): double
-        + {static} isValidPrice(test: double): boolean
+        + {static} isValidValue(test: double): boolean
         + equals(Object): boolean
         + hashCode(): int
         + toString(): String

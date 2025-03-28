@@ -5,15 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.person.fields.FavouriteItem;
+
 public class FavouriteItemTest {
 
     @Test
-    public void isValidFavouriteItem_validValues_returnsTrue() {
+    public void isValidValue_validValues_returnsTrue() {
         // Favourite items can be any non-blank string
-        assertTrue(FavouriteItem.isValidFavouriteItem("Pizza"));
-        assertTrue(FavouriteItem.isValidFavouriteItem("Apple"));
-        assertTrue(FavouriteItem.isValidFavouriteItem("Chocolate"));
-        assertTrue(FavouriteItem.isValidFavouriteItem("1234")); // Numeric values should be allowed as well
+        assertTrue(FavouriteItem.isValidValue("Pizza"));
+        assertTrue(FavouriteItem.isValidValue("Apple"));
+        assertTrue(FavouriteItem.isValidValue("Chocolate"));
+        assertTrue(FavouriteItem.isValidValue("1234")); // Numeric values should be allowed as well
     }
 
     @Test

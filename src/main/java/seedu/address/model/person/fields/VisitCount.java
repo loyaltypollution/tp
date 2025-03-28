@@ -1,11 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.fields;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Customer's Visit Count in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidVisitCount(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(String)}
  */
 public class VisitCount {
 
@@ -26,14 +26,14 @@ public class VisitCount {
      */
     public VisitCount(String visitCount) {
         requireNonNull(visitCount);
-        checkArgument(isValidVisitCount(visitCount), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidValue(visitCount), MESSAGE_CONSTRAINTS);
         this.value = visitCount;
     }
 
     /**
      * Returns true if a given string is a valid non-negative integer.
      */
-    public static boolean isValidVisitCount(String test) {
+    public static boolean isValidValue(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Drink's price.
- * Guarantees: immutable; is valid as declared in {@link #isValidPrice(double)}.
+ * Guarantees: immutable; is valid as declared in {@link #isValidValue(double)}.
  */
 public class Price {
 
@@ -19,7 +19,7 @@ public class Price {
      */
     public Price(double price) {
         requireNonNull(price);
-        if (!isValidPrice(price)) {
+        if (!isValidValue(price)) {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
         this.price = price;
@@ -32,7 +32,7 @@ public class Price {
     /**
      * Returns true if a given price is valid.
      */
-    public static boolean isValidPrice(double test) {
+    public static boolean isValidValue(double test) {
         return test > 0;
     }
 

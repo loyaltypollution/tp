@@ -21,17 +21,17 @@ class DrinkNameTest {
     }
 
     @Test
-    void isValidName_validCases() {
-        assertTrue(DrinkName.isValidName("Coca Cola"));
-        assertTrue(DrinkName.isValidName("Orange Juice"));
-        assertTrue(DrinkName.isValidName("Latte"));
+    void isValidValue_validCases() {
+        assertTrue(DrinkName.isValidValue("Coca Cola"));
+        assertTrue(DrinkName.isValidValue("Orange Juice"));
+        assertTrue(DrinkName.isValidValue("Latte"));
     }
 
     @Test
-    void isValidName_invalidCases() {
-        assertFalse(DrinkName.isValidName(null));
-        assertFalse(DrinkName.isValidName(""));
-        assertFalse(DrinkName.isValidName("   "));
+    void isValidValue_invalidCases() {
+        assertFalse(DrinkName.isValidValue(null));
+        assertFalse(DrinkName.isValidValue(""));
+        assertFalse(DrinkName.isValidValue("   "));
     }
 
     @Test

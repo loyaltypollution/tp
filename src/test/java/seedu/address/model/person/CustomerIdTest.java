@@ -30,18 +30,18 @@ public class CustomerIdTest {
     }
 
     @Test
-    public void isValidCustomerId() {
+    public void isValidValue() {
         // Invalid cases
-        assertEquals(false, CustomerId.isValidCustomerId(""));
-        assertEquals(false, CustomerId.isValidCustomerId("C"));
-        assertEquals(false, CustomerId.isValidCustomerId("c1001"));
-        assertEquals(false, CustomerId.isValidCustomerId("1001"));
-        assertEquals(false, CustomerId.isValidCustomerId("CABC"));
+        assertEquals(false, CustomerId.isValidValue(""));
+        assertEquals(false, CustomerId.isValidValue("C"));
+        assertEquals(false, CustomerId.isValidValue("c1001"));
+        assertEquals(false, CustomerId.isValidValue("1001"));
+        assertEquals(false, CustomerId.isValidValue("CABC"));
 
         // Valid cases
-        assertEquals(true, CustomerId.isValidCustomerId("C1001"));
-        assertEquals(true, CustomerId.isValidCustomerId("C9999"));
-        assertEquals(true, CustomerId.isValidCustomerId("C1"));
+        assertEquals(true, CustomerId.isValidValue("C1001"));
+        assertEquals(true, CustomerId.isValidValue("C9999"));
+        assertEquals(true, CustomerId.isValidValue("C1"));
     }
 
     @Test

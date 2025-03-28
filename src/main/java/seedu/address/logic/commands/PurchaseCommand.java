@@ -16,17 +16,17 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.drink.Drink;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.Customer;
-import seedu.address.model.person.CustomerId;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.FavouriteItem;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.RewardPoints;
-import seedu.address.model.person.TotalSpent;
-import seedu.address.model.person.VisitCount;
+import seedu.address.model.person.fields.CustomerId;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Remark;
+import seedu.address.model.person.fields.RewardPoints;
+import seedu.address.model.person.fields.TotalSpent;
+import seedu.address.model.person.fields.VisitCount;
+import seedu.address.model.person.fields.FavouriteItem;
 import seedu.address.model.tag.Tag;
 /**
  * Records a purchase for a customer, updating their total spent and reward points.

@@ -6,6 +6,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.fields.*;
+import seedu.address.model.person.fields.FavouriteItem;
 import seedu.address.model.tag.Tag;
 
 /**

@@ -33,7 +33,7 @@ import seedu.address.logic.parser.descriptors.EditPersonDescriptor;
 import seedu.address.logic.parser.descriptors.EditStaffDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.fields.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
