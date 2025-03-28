@@ -10,39 +10,25 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
+import seedu.address.model.person.fields.Address;
 import seedu.address.model.person.Customer;
-import seedu.address.model.person.CustomerId;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.FavouriteItem;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.RewardPoints;
-import seedu.address.model.person.TotalSpent;
-import seedu.address.model.person.VisitCount;
+import seedu.address.model.person.fields.CustomerId;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Remark;
+import seedu.address.model.person.fields.RewardPoints;
+import seedu.address.model.person.fields.TotalSpent;
+import seedu.address.model.person.fields.VisitCount;
+import seedu.address.model.person.fields.FavouriteItem;
 import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Customer}.
  */
-class JsonAdaptedCustomer {
+class JsonAdaptedCustomer extends JsonAdaptedPerson {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Customer's %s field is missing!";
-
-    private final String name;
-    private final String phone;
-    private final String email;
-    private final String address;
-    private final String remark;
-    private final List<JsonAdaptedTag> tags = new ArrayList<>();
-
-    // Customer-specific fields
-    private final String customerId;
-    private final String rewardPoints;
-    private final String visitCount;
-    private final String favouriteItem;
-    private final String totalSpent;
 
     /**
      * Constructs a {@code JsonAdaptedCustomer} with the given customer details.
@@ -59,14 +45,13 @@ class JsonAdaptedCustomer {
                                @JsonProperty("visitCount") String visitCount,
                                @JsonProperty("favouriteItem") String favouriteItem,
                                @JsonProperty("totalSpent") String totalSpent) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.remark = remark;
-        if (tags != null) {
-            this.tags.addAll(tags);
-        }
+        super(name, phone, email, address, remark, tags);
+        // fields.put(Name.class, name);
+        // fields.put(Phone.class, phone);
+        // fields.put(Email.class, email);
+        // fields.put(Address.class, address);
+        // fields.put(Remark.class, remark);
+
         this.customerId = customerId;
         this.rewardPoints = rewardPoints;
         this.visitCount = visitCount;
@@ -107,7 +92,7 @@ class JsonAdaptedCustomer {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
+        if (!Name.isValidValue(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
@@ -115,7 +100,7 @@ class JsonAdaptedCustomer {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
+        if (!Phone.isValidValue(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
@@ -123,7 +108,7 @@ class JsonAdaptedCustomer {
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
+        if (!Email.isValidValue(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
@@ -131,7 +116,7 @@ class JsonAdaptedCustomer {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
+        if (!Address.isValidValue(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
@@ -144,7 +129,7 @@ class JsonAdaptedCustomer {
         if (customerId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Customer ID"));
         }
-        if (!CustomerId.isValidCustomerId(customerId)) {
+        if (!CustomerId.isValidValue(customerId)) {
             throw new IllegalValueException(CustomerId.MESSAGE_CONSTRAINTS);
         }
         final CustomerId modelCustomerId = new CustomerId(customerId);
@@ -152,7 +137,7 @@ class JsonAdaptedCustomer {
         if (rewardPoints == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Reward Points"));
         }
-        if (!RewardPoints.isValidRewardPoints(rewardPoints)) {
+        if (!RewardPoints.isValidValue(rewardPoints)) {
             throw new IllegalValueException(RewardPoints.MESSAGE_CONSTRAINTS);
         }
         final RewardPoints modelRewardPoints = new RewardPoints(rewardPoints);
@@ -160,7 +145,7 @@ class JsonAdaptedCustomer {
         if (visitCount == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Visit Count"));
         }
-        if (!VisitCount.isValidVisitCount(visitCount)) {
+        if (!VisitCount.isValidValue(visitCount)) {
             throw new IllegalValueException(VisitCount.MESSAGE_CONSTRAINTS);
         }
         final VisitCount modelVisitCount = new VisitCount(visitCount);
@@ -168,7 +153,7 @@ class JsonAdaptedCustomer {
         if (favouriteItem == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Favourite Item"));
         }
-        if (!FavouriteItem.isValidFavouriteItem(favouriteItem)) {
+        if (!FavouriteItem.isValidValue(favouriteItem)) {
             throw new IllegalValueException(FavouriteItem.MESSAGE_CONSTRAINTS);
         }
         final FavouriteItem modelFavouriteItem = new FavouriteItem(favouriteItem);
@@ -176,7 +161,7 @@ class JsonAdaptedCustomer {
         if (totalSpent == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Total Spent"));
         }
-        if (!TotalSpent.isValidTotalSpent(totalSpent)) {
+        if (!TotalSpent.isValidValue(totalSpent)) {
             throw new IllegalValueException(TotalSpent.MESSAGE_CONSTRAINTS);
         }
         final TotalSpent modelTotalSpent = new TotalSpent(totalSpent);

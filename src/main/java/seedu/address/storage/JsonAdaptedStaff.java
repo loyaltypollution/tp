@@ -10,17 +10,17 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.HoursWorked;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.PerformanceRating;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
-import seedu.address.model.person.Role;
-import seedu.address.model.person.ShiftTiming;
+import seedu.address.model.person.fields.Address;
+import seedu.address.model.person.fields.Email;
+import seedu.address.model.person.fields.HoursWorked;
+import seedu.address.model.person.fields.Name;
+import seedu.address.model.person.fields.PerformanceRating;
+import seedu.address.model.person.fields.Phone;
+import seedu.address.model.person.fields.Remark;
+import seedu.address.model.person.fields.Role;
+import seedu.address.model.person.fields.ShiftTiming;
 import seedu.address.model.person.Staff;
-import seedu.address.model.person.StaffId;
+import seedu.address.model.person.fields.StaffId;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -103,7 +103,7 @@ class JsonAdaptedStaff {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
+        if (!Name.isValidValue(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
@@ -111,7 +111,7 @@ class JsonAdaptedStaff {
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
+        if (!Phone.isValidValue(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
@@ -119,7 +119,7 @@ class JsonAdaptedStaff {
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
-        if (!Email.isValidEmail(email)) {
+        if (!Email.isValidValue(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
@@ -127,7 +127,7 @@ class JsonAdaptedStaff {
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
+        if (!Address.isValidValue(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
@@ -140,7 +140,7 @@ class JsonAdaptedStaff {
         if (staffId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, StaffId.class.getSimpleName()));
         }
-        if (!StaffId.isValidStaffId(staffId)) {
+        if (!StaffId.isValidValue(staffId)) {
             throw new IllegalValueException(StaffId.MESSAGE_CONSTRAINTS);
         }
         final StaffId modelStaffId = new StaffId(staffId);
@@ -148,7 +148,7 @@ class JsonAdaptedStaff {
         if (role == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
         }
-        if (!Role.isValidRole(role)) {
+        if (!Role.isValidValue(role)) {
             throw new IllegalValueException(Role.MESSAGE_CONSTRAINTS);
         }
         final Role modelRole = new Role(role);
@@ -157,7 +157,7 @@ class JsonAdaptedStaff {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ShiftTiming.class.getSimpleName()));
         }
-        if (!ShiftTiming.isValidShiftTiming(shiftTiming)) {
+        if (!ShiftTiming.isValidValue(shiftTiming)) {
             throw new IllegalValueException(ShiftTiming.MESSAGE_CONSTRAINTS);
         }
         final ShiftTiming modelShiftTiming = new ShiftTiming(shiftTiming);
@@ -165,7 +165,7 @@ class JsonAdaptedStaff {
         if (hoursWorked == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Hours Worked"));
         }
-        if (!HoursWorked.isValidHoursWorked(hoursWorked)) {
+        if (!HoursWorked.isValidValue(hoursWorked)) {
             throw new IllegalValueException(HoursWorked.MESSAGE_CONSTRAINTS);
         }
         final HoursWorked modelHoursWorked = new HoursWorked(hoursWorked);
@@ -173,7 +173,7 @@ class JsonAdaptedStaff {
         if (performanceRating == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Performance Rating"));
         }
-        if (!PerformanceRating.isValidPerformanceRating(performanceRating)) {
+        if (!PerformanceRating.isValidValue(performanceRating)) {
             throw new IllegalValueException(PerformanceRating.MESSAGE_CONSTRAINTS);
         }
         final PerformanceRating modelPerformanceRating = new PerformanceRating(performanceRating);
