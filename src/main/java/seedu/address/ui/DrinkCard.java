@@ -34,9 +34,9 @@ public class DrinkCard extends UiPart<Region> {
         this.drink = drink;
 
         id.setText(displayedIndex + ". ");
-        drinkName.setText(drink.getName());
-        price.setText("$" + String.format("%.2f", drink.getPrice()));
-        category.setText("Category: " + drink.getCategory());
+        drinkName.setText(drink.getPrintableName());
+        price.setText(drink.getPrintablePrice());
+        category.setText("Category: " + drink.getPrintableCategory());
     }
 
     @Override

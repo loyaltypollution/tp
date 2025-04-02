@@ -1,6 +1,7 @@
 package seedu.address.model.drink;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Drink's category.
@@ -10,7 +11,12 @@ public class Category {
 
     public static final String MESSAGE_CONSTRAINTS = "Category should not be blank";
 
-    public final String category;
+    /*
+     * The category must not be blank.
+     */
+    public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    private final String category;
 
     /**
      * Constructs a {@code Category}.
@@ -19,9 +25,7 @@ public class Category {
      */
     public Category(String category) {
         requireNonNull(category);
-        if (!isValidCategory(category)) {
-            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
-        }
+        checkArgument(isValidCategory(category), MESSAGE_CONSTRAINTS);
         this.category = category;
     }
 
@@ -33,7 +37,10 @@ public class Category {
      * Returns true if a given string is a valid category.
      */
     public static boolean isValidCategory(String test) {
-        return test != null && !test.trim().isEmpty();
+        if (test == null) {
+            return false;
+        }
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

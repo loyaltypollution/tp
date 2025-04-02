@@ -27,7 +27,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.descriptors.EditCustomerDescriptor;
 import seedu.address.logic.parser.descriptors.EditPersonDescriptor;
@@ -348,9 +347,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredDrinkList().size());
 
         Drink drink = model.getFilteredDrinkList().get(targetIndex.getZeroBased());
-        final String[] splitName = drink.getName().split("\\s+");
+        final String[] splitName = drink.getPrintableName().split("\\s+");
         model.updateFilteredDrinkList(d -> Arrays.stream(splitName)
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(d.getName(), keyword)));
+                .anyMatch(keyword -> d.getName().containsWordIgnoreCase(keyword)));
 
         assertEquals(1, model.getFilteredDrinkList().size());
     }

@@ -11,9 +11,9 @@ import java.util.Objects;
 public class Drink {
 
     // Identity fields
-    private final String name;
-    private final double price;
-    private final String category;
+    private final DrinkName name;
+    private final Price price;
+    private final Category category;
 
     // Optional fields - stored as transient to not affect equals/hashCode
     private transient String description;
@@ -25,24 +25,48 @@ public class Drink {
      */
     public Drink(String name, double price, String category) {
         requireAllNonNull(name, price, category);
-        this.name = name;
-        this.price = price;
-        this.category = category;
+        this.name = new DrinkName(name);
+        this.price = new Price(price);
+        this.category = new Category(category);
         // Default values for optional fields
         this.description = "";
         this.stock = 0;
     }
 
-    public String getName() {
+    public DrinkName getName() {
         return name;
     }
 
-    public double getPrice() {
+    public Price getPrice() {
         return price;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
+    }
+
+    public String getPrintableName() {
+        return name.toString();
+    }
+
+    public String getPrintablePrice() {
+        return price.toString();
+    }
+
+    public String getPrintableCategory() {
+        return category.toString();
+    }
+
+    public String getPrimitiveName() {
+        return name.getDrinkName();
+    }
+
+    public double getPrimitivePrice() {
+        return price.getPrice();
+    }
+
+    public String getPrimitiveCategory() {
+        return category.getCategory();
     }
 
     public String getDescription() {
@@ -78,8 +102,11 @@ public class Drink {
             return true;
         }
 
-        return otherDrink != null
-                && otherDrink.getName().equalsIgnoreCase(getName());
+        if (!(otherDrink instanceof Drink)) {
+            return false;
+        }
+
+        return name.equals(otherDrink.getName());
     }
 
     /**
@@ -96,18 +123,18 @@ public class Drink {
         }
 
         Drink otherDrink = (Drink) other;
-        return name.equalsIgnoreCase(otherDrink.name)
-                && Double.compare(price, otherDrink.price) == 0
-                && category.equals(otherDrink.category);
+        return name.equals(otherDrink.getName())
+                && price.equals(otherDrink.getPrice())
+                && category.equals(otherDrink.getCategory());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name.toLowerCase(), price, category);
+        return Objects.hash(name, price, category);
     }
 
     @Override
     public String toString() {
-        return getName() + " Price: $" + getPrice() + " Category: " + getCategory();
+        return getName() + " Price: " + getPrice() + " Category: " + getCategory();
     }
 }

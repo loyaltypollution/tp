@@ -48,7 +48,7 @@ class PriceTest {
     @Test
     void toString_correctFormat() {
         Price price = new Price(7.5);
-        assertEquals("7.50", price.toString());
+        assertEquals("$7.50", price.toString());
     }
 
     @Test

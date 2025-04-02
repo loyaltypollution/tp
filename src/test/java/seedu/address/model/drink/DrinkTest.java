@@ -72,7 +72,7 @@ public class DrinkTest {
     @Test
     public void toStringMethod() {
         Drink latte = new Drink("Latte", 4.50, "Coffee");
-        String expected = "Latte Price: $4.5 Category: Coffee";
+        String expected = "Latte Price: $4.50 Category: Coffee";
         assertEquals(expected, latte.toString());
     }
 }

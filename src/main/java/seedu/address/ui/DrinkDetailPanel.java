@@ -117,12 +117,12 @@ public class DrinkDetailPanel extends UiPart<Region> {
 
             // Set the header (this is the most crucial part)
             if (drinkNameHeader != null) {
-                drinkNameHeader.setText(drink.getName());
+                drinkNameHeader.setText(drink.getPrintableName());
             }
 
             // Update all fields with null safety
-            safeSetText(price, String.format("$%.2f", drink.getPrice()));
-            safeSetText(category, drink.getCategory());
+            safeSetText(price, drink.getPrintablePrice());
+            safeSetText(category, drink.getPrintableCategory());
 
 
         } catch (Exception e) {

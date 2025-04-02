@@ -31,9 +31,9 @@ public class JsonAdaptedDrink {
      * Converts a given {@code Drink} into this class for Jackson use.
      */
     public JsonAdaptedDrink(Drink source) {
-        name = source.getName();
-        price = source.getPrice();
-        category = source.getCategory();
+        name = source.getPrimitiveName();
+        price = source.getPrimitivePrice();
+        category = source.getPrimitiveCategory();
     }
 
     /**

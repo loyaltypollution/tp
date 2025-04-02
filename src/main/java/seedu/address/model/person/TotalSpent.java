@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import seedu.address.model.drink.Price;
+
 /**
  * Represents a Customer's Total Spent in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTotalSpent(String)}
@@ -30,6 +32,17 @@ public class TotalSpent {
         requireNonNull(totalSpent);
         checkArgument(isValidTotalSpent(totalSpent), MESSAGE_CONSTRAINTS);
         value = totalSpent;
+    }
+
+    /**
+     * Increments the total spent by the given price.
+     *
+     * @param price the price to add to the total spent
+     * @return a new TotalSpent object with the updated value
+     */
+    public TotalSpent incrementSpent(Price price) {
+        double newTotalSpent = Double.parseDouble(value) + price.getPrice();
+        return new TotalSpent(String.format("%.2f", newTotalSpent));
     }
 
     /**

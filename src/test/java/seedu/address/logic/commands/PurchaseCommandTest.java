@@ -21,6 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.drink.Drink;
+import seedu.address.model.drink.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Customer;
 import seedu.address.model.person.CustomerId;
@@ -89,7 +90,7 @@ public class PurchaseCommandTest {
                 PurchaseCommand.MESSAGE_PURCHASE_SUCCESS,
                 customerBefore.getName(),
                 VALID_DRINK_NAME,
-                VALID_DRINK_PRICE,
+                new Price(VALID_DRINK_PRICE),
                 (int) Math.floor(VALID_DRINK_PRICE * POINTS_PER_DOLLAR),
                 expectedNewRewardPoints,
                 expectedNewTotalSpent), result.getFeedbackToUser());
@@ -117,7 +118,7 @@ public class PurchaseCommandTest {
                 PurchaseCommand.MESSAGE_REDEMPTION_SUCCESS,
                 customerBefore.getName(),
                 VALID_DRINK_NAME,
-                VALID_DRINK_PRICE,
+                new Price(VALID_DRINK_PRICE),
                 pointsNeeded,
                 expectedNewRewardPoints), result.getFeedbackToUser());
 

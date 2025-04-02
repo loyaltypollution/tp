@@ -15,9 +15,9 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.drink.Drink;
+import seedu.address.model.drink.Price;
 import seedu.address.model.person.Customer;
 import seedu.address.model.person.RewardPoints;
-import seedu.address.model.person.TotalSpent;
 import seedu.address.model.person.VisitCount;
 import seedu.address.model.util.CustomerBuilder;
 
@@ -37,22 +37,18 @@ public class PurchaseCommand extends Command {
         + PREFIX_REDEEM + "true";
 
     public static final String MESSAGE_PURCHASE_SUCCESS = "Purchase recorded for %1$s.\n"
-        + "Drink: %2$s, Price: $%3$.2f\n"
+        + "Drink: %2$s, Price: %3$s\n"
         + "Points earned: %4$d, New total points: %5$d\n"
         + "New total spent: $%6$.2f";
 
     public static final String MESSAGE_REDEMPTION_SUCCESS = "Points redeemed for %1$s.\n"
-        + "Drink: %2$s, Price: $%3$.2f\n"
+        + "Drink: %2$s, Price: %3$s\n"
         + "Points used: %4$d, Remaining points: %5$d";
 
     public static final String MESSAGE_DRINK_NOT_FOUND = "Drink '%1$s' not found in the catalog.";
 
     public static final String MESSAGE_INSUFFICIENT_POINTS = "Insufficient points for redemption. "
         + "Required: %1$d, Available: %2$d";
-
-    // Points conversion rates
-    private static final int POINTS_PER_DOLLAR = 10; // Earn 10 points per dollar spent
-    private static final int POINTS_TO_DOLLAR_RATIO = 100; // 100 points = $1 in redemption value
 
     private final Index customerIndex;
     private final String drinkName;
@@ -87,7 +83,7 @@ public class PurchaseCommand extends Command {
 
         // Find the drink in the catalog
         Optional<Drink> drinkOptional = model.getFilteredDrinkList().stream()
-                .filter(d -> d.getName().equalsIgnoreCase(drinkName))
+                .filter(d -> d.getName().equalsNameIgnoreCase(drinkName))
                 .findFirst();
 
         if (!drinkOptional.isPresent()) {
@@ -95,7 +91,7 @@ public class PurchaseCommand extends Command {
         }
 
         Drink drink = drinkOptional.get();
-        double price = drink.getPrice();
+        Price price = drink.getPrice();
 
         if (isRedemption) {
             return handleRedemption(model, customerToUpdate, drink, price);
@@ -108,9 +104,9 @@ public class PurchaseCommand extends Command {
      * Handles a regular purchase that earns points and updates total spent.
      */
     private CommandResult handleRegularPurchase(Model model, Customer customerToUpdate,
-            Drink drink, double price) {
+            Drink drink, Price price) {
         // Calculate points to add based on purchase amount
-        int pointsToAdd = calculatePointsForPurchase(price);
+        int pointsToAdd = price.calculatePointsForPurchase();
 
         Customer updatedCustomer = createUpdatedCustomerForPurchase(customerToUpdate, price, pointsToAdd);
 
@@ -130,9 +126,9 @@ public class PurchaseCommand extends Command {
      * Handles a redemption purchase that uses points instead of adding to total spent.
      */
     private CommandResult handleRedemption(Model model, Customer customerToUpdate,
-            Drink drink, double price) throws CommandException {
+            Drink drink, Price price) throws CommandException {
         // Calculate points needed for redemption
-        int pointsNeeded = calculatePointsForRedemption(price);
+        int pointsNeeded = price.calculatePointsForRedemption();
         int currentPoints = Integer.parseInt(customerToUpdate.getRewardPoints().value);
 
         // Check if customer has enough points
@@ -156,36 +152,19 @@ public class PurchaseCommand extends Command {
     }
 
     /**
-     * Calculates reward points to add based on purchase amount.
-     * Points are awarded at a rate of POINTS_PER_DOLLAR for each dollar spent.
-     */
-    private int calculatePointsForPurchase(double amount) {
-        return (int) Math.floor(amount * POINTS_PER_DOLLAR);
-    }
-
-    /**
-     * Calculates points needed to redeem a purchase of the given amount.
-     * Points are converted at a rate of POINTS_TO_DOLLAR_RATIO points per dollar.
-     */
-    private int calculatePointsForRedemption(double amount) {
-        return (int) Math.ceil(amount * POINTS_TO_DOLLAR_RATIO);
-    }
-
-    /**
      * Creates and returns a {@code Customer} with the details of {@code customerToUpdate}
      * with updated total spent and reward points for a regular purchase.
      */
     private static Customer createUpdatedCustomerForPurchase(Customer customerToUpdate,
-            double purchaseAmount, int pointsToAdd) {
+            Price purchaseAmount, int pointsToAdd) {
         assert customerToUpdate != null;
 
         int currentRewardPoints = Integer.parseInt(customerToUpdate.getRewardPoints().value);
-        double currentTotalSpent = Double.parseDouble(customerToUpdate.getTotalSpent().value);
         int currentVisitCount = Integer.parseInt(customerToUpdate.getVisitCount().value);
 
         return new CustomerBuilder(customerToUpdate)
                 .withRewardPoints(new RewardPoints(String.valueOf(currentRewardPoints + pointsToAdd)))
-                .withTotalSpent(new TotalSpent(String.format("%.2f", currentTotalSpent + purchaseAmount)))
+                .withTotalSpent(customerToUpdate.getTotalSpent().incrementSpent(purchaseAmount))
                 .withVisitCount(new VisitCount(String.valueOf(currentVisitCount + 1)))
                 .build();
     }
