@@ -877,9 +877,9 @@ Ans: Use the `staffedit` command to edit worked hours to a staff member's record
 
 Ans: Yes, the visit count can be edited via the `customeredit`.
 
-#### Q14: What do I do when there is a blank screen after my `stafffind` or `customerfind` returns no results
+#### Q14: How do I view all staff or customers again after using find commands?
 
-Ans: Use the `staffind all/true` command to show all existing staff again.
+Ans: Use the `stafffind all/true` command to show all staff, or `customerfind all/true` to show all customers again.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -942,8 +942,8 @@ Command | Format | Examples
 **Delete Customer (Alias)** | `cd INDEX` | `cd 2`
 **Edit Customer** | `customeredit INDEX [cid/CUSTOMER_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [rp/REWARD_POINTS] [vc/VISIT_COUNT] [fi/FAVOURITE_ITEM] [ts/TOTAL_SPENT] [t/TAG]...` | `customeredit 1 p/99994567 e/newemail@example.com`
 **Edit Customer (Alias)** | `ce INDEX [cid/CUSTOMER_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [rp/REWARD_POINTS] [vc/VISIT_COUNT] [fi/FAVOURITE_ITEM] [ts/TOTAL_SPENT] [t/TAG]...` | `ce 1 p/99994567 e/newemail@example.com`
-**Find Customer** | `customerfind KEYWORD [MORE_KEYWORDS]...` | `customerfind John Doe`
-**Find Customer (Alias)** | `cf KEYWORD [MORE_KEYWORDS]...` | `cf John Doe`
+**Find Customer** | `customerfind [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [cid/CUSTOMER_ID] [rp/REWARD_POINTS] [vc/VISIT_COUNT] [fi/FAVOURITE_ITEM] [ts/TOTAL_SPENT] [t/TAG]...` | `customerfind n/John Doe`
+**Find Customer (Alias)** | `cf [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [cid/CUSTOMER_ID] [rp/REWARD_POINTS] [vc/VISIT_COUNT] [fi/FAVOURITE_ITEM] [ts/TOTAL_SPENT] [t/TAG]...` | `cf n/John Doe`
 **List All Customers** | `customerfind all/true` | -
 **List All Customers (Alias)** | `cf all/true` | -
 **Add Staff** | `staffadd sid/STAFF_ID n/NAME p/PHONE e/EMAIL a/ADDRESS role/ROLE shift/SHIFT_TIMING hours/HOURS_WORKED rating/PERFORMANCE_RATING [t/TAG]...` | `staffadd sid/S1234 n/Alice Tan p/81234567 e/alice@example.com a/123, Jurong West Ave 6, #08-111 role/Barista shift/9am-5pm hours/40 rating/4.5 t/fullTime`
@@ -954,8 +954,8 @@ Command | Format | Examples
 **Delete Staff (Alias)** | `sd INDEX` | `sd 2`
 **Edit Staff** | `staffedit INDEX [sid/STAFF_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [role/ROLE] [shift/SHIFT_TIMING] [hours/HOURS_WORKED] [rating/PERFORMANCE_RATING] [t/TAG]...` | `staffedit 1 p/99994567 e/newemail@example.com`
 **Edit Staff (Alias)** | `se INDEX [sid/STAFF_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [role/ROLE] [shift/SHIFT_TIMING] [hours/HOURS_WORKED] [rating/PERFORMANCE_RATING] [t/TAG]...` | `se 1 p/99994567 e/newemail@example.com`
-**Find Staff** | `stafffind KEYWORD [MORE_KEYWORDS]...` | `stafffind Alice`
-**Find Staff (Alias)** | `sf KEYWORD [MORE_KEYWORDS]...` | `sf Alice`
+**Find Staff** | `stafffind [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [sid/STAFF_ID] [role/ROLE] [shift/SHIFT_TIMING] [hours/HOURS_WORKED] [rating/PERFORMANCE_RATING] [t/TAG]...` | `stafffind n/Alice`
+**Find Staff (Alias)** | `sf [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [sid/STAFF_ID] [role/ROLE] [shift/SHIFT_TIMING] [hours/HOURS_WORKED] [rating/PERFORMANCE_RATING] [t/TAG]...` | `sf n/Alice`
 **List All Staff** | `stafffind all/true` | -
 **List All Staff (Alias)** | `sf all/true` | -
 **Add Drink** | `drinkadd n/NAME p/PRICE c/CATEGORY` | `drinkadd n/Iced Latte p/4.50 c/Coffee`
