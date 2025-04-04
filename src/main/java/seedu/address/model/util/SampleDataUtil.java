@@ -51,9 +51,9 @@ public class SampleDataUtil {
                     new PerformanceRating("4.8")
             ),
             new Staff(
-                    new Name("Bob Lim"),
+                    new Name("Jacob Tan"),
                     new Phone("87654321"),
-                    new Email("bob.lim@cafeexample.com"),
+                    new Email("jacob.tan@cafeexample.com"),
                     new Address("456 Coffee Lane"),
                     new Remark("Great leadership skills"),
                     getTagSet("manager", "fulltime"),

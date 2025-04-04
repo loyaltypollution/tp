@@ -123,7 +123,7 @@ First time using **CaféConnect**? Don't worry! We've got you covered! This guid
     * [Adding a drink: `drinkadd` or `da`](#adding-a-drink-drinkadd-or-da)
     * [Deleting a drink: `drinkdelete` or `dd`](#deleting-a-drink-drinkdelete-or-dd)
     * [Recording a purchase: `purchase` or `p`](#recording-a-purchase-purchase)
-    * [Recording a purchase (shortcut): `p` shortcut](#recording-a-purchase-purchase-or-p-shortcut)
+    * [Quickly recording a purchase: `qp` shortcut](#quickly-recording-a-purchase-quickpurchase-or-qp)
   * [FAQ](#faq)
   * [Known Issues](#known-issues)
   * [Command Summary](#command-summary)
@@ -302,7 +302,7 @@ Format: `customeradd cid/CUSTOMER_ID n/NAME p/PHONE e/EMAIL a/ADDRESS rp/REWARD_
 
 Examples:
 * `customeradd cid/C001 n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 rp/150 vc/8 fi/Cappuccino ts/120`
-* `customeradd cid/C002 n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate Prison rp/300 vc/15 fi/Mocha ts/250 t/vip t/regular`
+* `ca cid/C002 n/Betsy Crowe p/1234567 e/betsycrowe@example.com a/Newgate Prison rp/300 vc/15 fi/Mocha ts/250 t/vip t/regular`
 
 These are the before and after images of the first example
 
@@ -361,7 +361,7 @@ Format: `customerdelete INDEX`
 
 Examples:
 * `customerdelete 2` deletes the 2nd customer in the customer list.
-* `customerdelete 4` when you only have three customers returns an error message.
+* `cd 4` when you only have three customers returns an error message.
 
 These are the before and after images of the first example
 
@@ -394,7 +394,7 @@ Format: `customeredit INDEX [cid/CUSTOMER_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/AD
 
 Examples:
 * `customeredit 1 p/99994567 e/newemail@example.com` edits the phone number and email address of the 1st customer to be `99994567` and `newemail@example.com` respectively.
-* `customeredit 2 n/Betsy Crower rp/5000 t/` edits the name of the 2nd customer to be `Betsy Crower`, updates their reward points to `5000`, and clears all existing tags.
+* `ce 2 n/Betsy Crower rp/5000 t/` edits the name of the 2nd customer to be `Betsy Crower`, updates their reward points to `5000`, and clears all existing tags.
 
 These are the before and after images of the first example
 
@@ -423,6 +423,7 @@ Format: `customerfind all/true` (to list all customers)
 * The search will return all customers who matches the specified search criteria.
 * At least one of the optional fields must be provided or `all/true`.
 * The keyword search for `[n/NAME]` do not need to match the full name exactly; partial matches within the name are included. For example, searching `n/john doe` will match `John Doe`, `John Tan`, or `Jane Doe`.
+* The keywords search for [n/NAME] will return close matches as well. For example, searching for `n/all` will match ali.
 * The keywords search for `[n/NAME]` is case-insensitive. For example, searching for `alice` will match `Alice`, `ALICE`, or `aLiCe`.
 * The keywords search for `[p/PHONE]` `[e/EMAIL]` `[a/ADDRESS]` `[cid/CUSTOMER_ID]` `[rp/REWARD_POINTS]` `[vc/VISIT_COUNT]` `[fi/FAVOURITE_ITEM]` `[ts/TOTAL_SPENT]` `[t/TAG]` MUST match the field exactly and is case-sensitive. For example , searching `fi/Cappuccin` will return nothing if drink should be `fi/Cappucino`; searching `fi/latte` will return nothing if drink should be `fi/Latte`
 * Use `customerfind all/true` or `cf all/true` to display the complete list of all customers in CaféConnect.
@@ -467,7 +468,7 @@ Format: `staffadd sid/STAFF_ID n/NAME p/PHONE e/EMAIL a/ADDRESS role/ROLE shift/
 
 Examples:
 * `staffadd sid/S1234 n/Alice Tan p/81234567 e/alice@example.com a/123, Jurong West Ave 6, #08-111 role/Barista shift/9am-5pm hours/40 rating/4.5 t/fullTime t/experienced`
-* `staffadd sid/S0101 n/Bob Lim p/82019292 e/bob@example.com a/123, Tampines West Ave 7, #09-121 role/Barista shift/5pm-11pm hours/30 rating/4.5 t/fullTime`
+* `sa sid/S0101 n/Bob Lim p/82019292 e/bob@example.com a/123, Tampines West Ave 7, #09-121 role/Barista shift/5pm-11pm hours/30 rating/4.5 t/fullTime`
 
 These are the before and after images of the first example
 
@@ -525,7 +526,7 @@ Format: `staffdelete INDEX`
 
 Examples:
 * `staffdelete 2` deletes the 2nd staff in the address book.
-* `staffdelete 4` when you only have three staff returns an error message.
+* `sd 4` when you only have three staff returns an error message.
 
 These are the before and after images of the first example
 
@@ -558,7 +559,7 @@ Format: `staffedit INDEX [sid/STAFF_ID] [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]
 
 Examples:
 * `staffedit 1 p/99994567 e/newemail@example.com` edits the phone number and email address of the 1st staff to be `99994567` and `newemail@example.com` respectively.
-* `staffedit 2 n/Betsy Crower sid/S002 t/` edits the name of the 2nd staff to be `Betsy Crower`, changes the staff ID to `S002`, and clears all existing tags.
+* `se 2 n/Betsy Crower sid/S002 t/` edits the name of the 2nd staff to be `Betsy Crower`, changes the staff ID to `S002`, and clears all existing tags.
 
 These are the before and after images of the first example
 
@@ -587,6 +588,7 @@ Format: `stafffind all/true` (to list all staff)
 * At least one of the optional fields must be provided or `all/true`.
 * The keyword search for `[n/NAME]` do not need to match the full name exactly; partial matches within the name are included. For example, searching `n/john doe` will match `John Doe`, `John Tan`, or `Jane Doe`.
 * The keywords search for `[n/NAME]` is case-insensitive. For example, searching for `alice` will match `Alice`, `ALICE`, or `aLiCe`.
+* The keywords search for [n/NAME] will return close matches as well. For example, searching for `n/all` will match ali.
 * The keywords search for `[p/PHONE]` `[e/EMAIL]` `[a/ADDRESS]` `[sid/STAFF_ID]` `[role/ROLE]` `[shift/SHIFT_TIMING]` `[hours/HOURS_WORKED]` `[rating/PERFORMANCE_RATING]` `[t/TAG]` MUST match the field exactly and is case-sensitive. For example , searching `role/Barist` will return nothing if role should be `role/Barista`; searching `role/chef` will return nothing if drink should be `role/Chef`
 * Use `stafffind all/true` or `sf all/true` to display the complete list of all staff in CaféConnect.
 
@@ -624,7 +626,7 @@ Format: `drinkadd n/NAME p/PRICE c/CATEGORY`
 
 Examples:
 * `drinkadd n/Iced Latte p/4.50 c/Coffee` adds an Iced Latte under the Coffee category with a price of $4.50
-* `drinkadd n/Chai Tea p/3.80 c/Tea` adds a Chai Tea under the Tea category with a price of $3.80
+* `da n/Chai Tea p/3.80 c/Tea` adds a Chai Tea under the Tea category with a price of $3.80
 
 These are the before and after images of the first example
 
@@ -655,7 +657,7 @@ Format: `drinkdelete INDEX`
 
 Examples:
 * `drinkdelete 1` deletes the 1st drink in the drink list.
-* `drinkdelete 4` when you only have three drinks returns an error message.
+* `dd 4` when you only have three drinks returns an error message.
 
 These are the before and after images of the first example
 
@@ -692,7 +694,7 @@ Format: `purchase INDEX n/DRINK_NAME [redeem/true]`
 
 Examples:
 * `purchase 1 n/Espresso` records a regular purchase of an Espresso for the 1st customer, updating their total spent and adding reward points.
-* `purchase 2 n/Cappuccino redeem/true` redeems a Cappuccino for the 2nd customer using their reward points.
+* `p 2 n/Cappuccino redeem/true` redeems a Cappuccino for the 2nd customer using their reward points.
 
 ##### Standard Purchase
 
@@ -740,7 +742,7 @@ Format: `quickpurchase INDEX:DRINK_NAME[:r]`
 
 Examples:
 * `quickpurchase 1:Espresso` records a regular purchase of an Espresso for the 1st customer.
-* `quickpurchase 1:Espresso:r` redeems an Espresso for the 1st customer using reward points.
+* `qp 1:Espresso:r` redeems an Espresso for the 1st customer using reward points.
 
 ##### Standard Quick Purchase
 

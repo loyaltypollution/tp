@@ -1,6 +1,5 @@
 package seedu.address.model.person.predicates;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -15,7 +14,7 @@ import seedu.address.model.person.Person;
  */
 public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
-    private static final int FUZZY_MATCH_THRESHOLD = 80; // Token set ratio threshold for fuzzy matching
+    private static final int FUZZY_MATCH_THRESHOLD = 85; // Token set ratio threshold for fuzzy matching
     private static final int DEFAULT_MAX_LEVENSHTEIN_DISTANCE = 2; // Default max Levenshtein distance
 
     private final List<String> keywords;
@@ -55,28 +54,15 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
             return exactMatch;
         }
 
+        // Convert keywords list back to a single string for fuzzy matching
+        String keywordsString = String.join(" ", keywords);
+
         // If no exact match and fuzzy matching is enabled, check for fuzzy matches
-        // First check if any keyword matches the full name
-        boolean fullNameMatch = keywords.stream()
-                .anyMatch(keyword -> TextMatchUtil.areSimilarStrings(
-                        keyword.toLowerCase(),
-                        personName.toLowerCase(),
-                        DEFAULT_MAX_LEVENSHTEIN_DISTANCE,
-                        FUZZY_MATCH_THRESHOLD));
-
-        if (fullNameMatch) {
-            return true;
-        }
-
-        // If no full name match, check individual name components
-        String[] nameComponents = personName.split("\\s+");
-        return keywords.stream()
-                .anyMatch(keyword -> Arrays.stream(nameComponents)
-                        .anyMatch(component -> TextMatchUtil.areSimilarStrings(
-                                keyword.toLowerCase(),
-                                component.toLowerCase(),
-                                DEFAULT_MAX_LEVENSHTEIN_DISTANCE,
-                                FUZZY_MATCH_THRESHOLD)));
+        return TextMatchUtil.areSimilarStrings(
+                keywordsString.toLowerCase(),
+                personName.toLowerCase(),
+                DEFAULT_MAX_LEVENSHTEIN_DISTANCE,
+                FUZZY_MATCH_THRESHOLD);
     }
 
     @Override

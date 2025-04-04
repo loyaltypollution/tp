@@ -1047,7 +1047,7 @@ testers are expected to do more *exploratory* testing.
 5. Finding customers
    1. Test case: `customerfind John`<br>
       Expected: Displays all customers with "John" in their name.
-   2. Test case: `cf John`<br>
+   2. Test case: `cf n/John`<br>
       Expected: Same as above, using the command abbreviation.
    3. Test case: `customerfind all/true`<br>
       Expected: Displays all customers in the list.
@@ -1083,7 +1083,7 @@ testers are expected to do more *exploratory* testing.
       Expected: Same as above, using the command abbreviation.
 
 5. Finding staff
-   1. Test case: `stafffind Jane`<br>
+   1. Test case: `stafffind n/Jane`<br>
       Expected: Displays all staff with "Jane" in their name.
    2. Test case: `sf Jane`<br>
       Expected: Same as above, using the command abbreviation.
