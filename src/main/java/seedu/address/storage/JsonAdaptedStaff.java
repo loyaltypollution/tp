@@ -27,12 +27,12 @@ public class JsonAdaptedStaff extends JsonAdaptedPerson<Staff> {
     @JsonCreator
     public JsonAdaptedStaff(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                             @JsonProperty("email") String email, @JsonProperty("address") String address,
-                            @JsonProperty("remark") String remark, @JsonProperty("tags") List<JsonAdaptedTag> tags,
+                            @JsonProperty("tags") List<JsonAdaptedTag> tags,
                             @JsonProperty("staffId") String staffId, @JsonProperty("role") String role,
                             @JsonProperty("shiftTiming") String shiftTiming,
                             @JsonProperty("hoursWorked") String hoursWorked,
                             @JsonProperty("performanceRating") String performanceRating) {
-        super(name, phone, email, address, remark, tags);
+        super(name, phone, email, address, tags);
         this.staffId = staffId;
         this.role = role;
         this.shiftTiming = shiftTiming;

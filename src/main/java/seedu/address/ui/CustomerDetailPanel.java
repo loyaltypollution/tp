@@ -55,8 +55,6 @@ public class CustomerDetailPanel extends UiPart<Region> {
     @FXML
     private Label favouriteItem;
     @FXML
-    private Label remark;
-    @FXML
     private FlowPane tags;
 
     /**
@@ -172,12 +170,6 @@ public class CustomerDetailPanel extends UiPart<Region> {
                 safeSetText(favouriteItem, "None");
             }
 
-            try {
-                safeSetText(remark, customer.getRemark() != null && customer.getRemark().value != null
-                        ? customer.getRemark().value : "");
-            } catch (Exception e) {
-                safeSetText(remark, "No notes");
-            }
 
             // Clear existing tags and add new ones
             if (tags != null) {

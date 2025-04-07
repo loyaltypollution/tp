@@ -23,7 +23,6 @@ public abstract class JsonAdaptedPerson<T extends Person> {
     private final String phone;
     private final String email;
     private final String address;
-    private final String remark;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -32,12 +31,11 @@ public abstract class JsonAdaptedPerson<T extends Person> {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("remark") String remark, @JsonProperty("tags") List<JsonAdaptedTag> tags) {
+            @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.remark = remark;
         if (tags != null) {
             this.tags.addAll(tags);
         }
@@ -51,7 +49,6 @@ public abstract class JsonAdaptedPerson<T extends Person> {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        remark = source.getRemark().value;
         tags.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -75,7 +72,6 @@ public abstract class JsonAdaptedPerson<T extends Person> {
                 .withPhone(phone)
                 .withEmail(email)
                 .withAddress(address)
-                .withRemark(remark)
                 .withTags(modelTags);
     }
 

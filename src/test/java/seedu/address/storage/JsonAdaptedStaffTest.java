@@ -29,7 +29,6 @@ public class JsonAdaptedStaffTest {
     private static final String VALID_PHONE = TypicalStaff.ALEX.getPhone().toString();
     private static final String VALID_EMAIL = TypicalStaff.ALEX.getEmail().toString();
     private static final String VALID_ADDRESS = TypicalStaff.ALEX.getAddress().toString();
-    private static final String VALID_REMARK = TypicalStaff.ALEX.getRemark().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = TypicalStaff.ALEX.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -45,7 +44,6 @@ public class JsonAdaptedStaffTest {
                 VALID_PHONE,
                 null,
                 VALID_ADDRESS,
-                VALID_REMARK,
                 VALID_TAGS,
                 VALID_STAFF_ID,
                 VALID_ROLE,
@@ -63,7 +61,6 @@ public class JsonAdaptedStaffTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 null,
-                VALID_REMARK,
                 VALID_TAGS,
                 VALID_STAFF_ID,
                 VALID_ROLE,
@@ -76,30 +73,11 @@ public class JsonAdaptedStaffTest {
     }
 
     @Test
-    public void toModelType_nullRemark_throwsIllegalValueException() {
-        JsonAdaptedStaff staff = new JsonAdaptedStaff(VALID_NAME,
-                VALID_PHONE,
-                VALID_EMAIL,
-                VALID_ADDRESS,
-                null,
-                VALID_TAGS,
-                VALID_STAFF_ID,
-                VALID_ROLE,
-                VALID_SHIFT_TIMING,
-                VALID_HOURS_WORKED,
-                VALID_PERFORMANCE_RATING);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "Remark");
-        IllegalValueException exception = assertThrows(IllegalValueException.class, staff::toModelType);
-        assertEquals(expectedMessage, exception.getMessage());
-    }
-
-    @Test
     public void toModelType_nullRole_throwsIllegalValueException() {
         JsonAdaptedStaff staff = new JsonAdaptedStaff(VALID_NAME,
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
-                VALID_REMARK,
                 VALID_TAGS,
                 VALID_STAFF_ID,
                 null,
@@ -117,7 +95,6 @@ public class JsonAdaptedStaffTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
-                VALID_REMARK,
                 VALID_TAGS,
                 VALID_STAFF_ID,
                 VALID_ROLE,
@@ -141,7 +118,6 @@ public class JsonAdaptedStaffTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
-                VALID_REMARK,
                 VALID_TAGS,
                 VALID_STAFF_ID,
                 VALID_ROLE,
@@ -159,7 +135,6 @@ public class JsonAdaptedStaffTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
-                VALID_REMARK,
                 VALID_TAGS,
                 VALID_STAFF_ID,
                 VALID_ROLE,
@@ -177,7 +152,6 @@ public class JsonAdaptedStaffTest {
                 INVALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
-                VALID_REMARK,
                 VALID_TAGS,
                 VALID_STAFF_ID,
                 VALID_ROLE,
@@ -195,7 +169,6 @@ public class JsonAdaptedStaffTest {
                 VALID_PHONE,
                 INVALID_EMAIL,
                 VALID_ADDRESS,
-                VALID_REMARK,
                 VALID_TAGS,
                 VALID_STAFF_ID,
                 VALID_ROLE,
@@ -213,7 +186,6 @@ public class JsonAdaptedStaffTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 INVALID_ADDRESS,
-                VALID_REMARK,
                 VALID_TAGS,
                 VALID_STAFF_ID,
                 VALID_ROLE,
@@ -231,7 +203,6 @@ public class JsonAdaptedStaffTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
-                VALID_REMARK,
                 VALID_TAGS,
                 null,
                 VALID_ROLE,
@@ -251,7 +222,6 @@ public class JsonAdaptedStaffTest {
                 VALID_PHONE,
                 VALID_EMAIL,
                 VALID_ADDRESS,
-                VALID_REMARK,
                 invalidTags,
                 VALID_STAFF_ID,
                 VALID_ROLE,

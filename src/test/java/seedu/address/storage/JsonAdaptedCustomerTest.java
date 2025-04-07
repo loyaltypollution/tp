@@ -26,7 +26,6 @@ public class JsonAdaptedCustomerTest {
     private static final String VALID_PHONE = "12345678";
     private static final String VALID_EMAIL = "alice@example.com";
     private static final String VALID_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    private static final String VALID_REMARK = "Frequent buyer";
     private static final String VALID_CUSTOMER_ID = "C001";
     private static final String VALID_REWARD_POINTS = "100";
     private static final String VALID_VISIT_COUNT = "5";
@@ -45,7 +44,7 @@ public class JsonAdaptedCustomerTest {
     @Test
     public void toModelType_validCustomerDetails_returnsCustomer() throws Exception {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_REMARK, VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
+                VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
                 VALID_FAVOURITE_ITEM, VALID_TOTAL_SPENT);
         Customer modelCustomer = customer.toModelType();
         assertEquals(VALID_NAME, modelCustomer.getName().fullName);
@@ -56,7 +55,7 @@ public class JsonAdaptedCustomerTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_REMARK, VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
+                VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
                 VALID_FAVOURITE_ITEM, VALID_TOTAL_SPENT);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         IllegalValueException exception = assertThrows(IllegalValueException.class, customer::toModelType);
@@ -66,7 +65,7 @@ public class JsonAdaptedCustomerTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_REMARK, VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
+                VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
                 VALID_FAVOURITE_ITEM, VALID_TOTAL_SPENT);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         IllegalValueException exception = assertThrows(IllegalValueException.class, customer::toModelType);
@@ -76,7 +75,7 @@ public class JsonAdaptedCustomerTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS,
-                VALID_REMARK, VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
+                VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
                 VALID_FAVOURITE_ITEM, VALID_TOTAL_SPENT);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         IllegalValueException exception = assertThrows(IllegalValueException.class, customer::toModelType);
@@ -86,7 +85,7 @@ public class JsonAdaptedCustomerTest {
     @Test
     public void toModelType_invalidCustomerId_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_REMARK, VALID_TAGS, INVALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
+                VALID_TAGS, INVALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
                 VALID_FAVOURITE_ITEM, VALID_TOTAL_SPENT);
         String expectedMessage = CustomerId.MESSAGE_CONSTRAINTS;
         IllegalValueException exception = assertThrows(IllegalValueException.class, customer::toModelType);
@@ -96,7 +95,7 @@ public class JsonAdaptedCustomerTest {
     @Test
     public void toModelType_invalidRewardPoints_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_REMARK, VALID_TAGS, VALID_CUSTOMER_ID, INVALID_REWARD_POINTS, VALID_VISIT_COUNT,
+                VALID_TAGS, VALID_CUSTOMER_ID, INVALID_REWARD_POINTS, VALID_VISIT_COUNT,
                 VALID_FAVOURITE_ITEM, VALID_TOTAL_SPENT);
         String expectedMessage = RewardPoints.MESSAGE_CONSTRAINTS;
         IllegalValueException exception = assertThrows(IllegalValueException.class, customer::toModelType);
@@ -106,7 +105,7 @@ public class JsonAdaptedCustomerTest {
     @Test
     public void toModelType_invalidVisitCount_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_REMARK, VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, INVALID_VISIT_COUNT,
+                VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, INVALID_VISIT_COUNT,
                 VALID_FAVOURITE_ITEM, VALID_TOTAL_SPENT);
         String expectedMessage = VisitCount.MESSAGE_CONSTRAINTS;
         IllegalValueException exception = assertThrows(IllegalValueException.class, customer::toModelType);
@@ -116,7 +115,7 @@ public class JsonAdaptedCustomerTest {
     @Test
     public void toModelType_invalidTotalSpent_throwsIllegalValueException() {
         JsonAdaptedCustomer customer = new JsonAdaptedCustomer(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_REMARK, VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
+                VALID_TAGS, VALID_CUSTOMER_ID, VALID_REWARD_POINTS, VALID_VISIT_COUNT,
                 VALID_FAVOURITE_ITEM, INVALID_TOTAL_SPENT);
         String expectedMessage = TotalSpent.MESSAGE_CONSTRAINTS;
         IllegalValueException exception = assertThrows(IllegalValueException.class, customer::toModelType);

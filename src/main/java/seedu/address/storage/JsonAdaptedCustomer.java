@@ -29,14 +29,13 @@ public class JsonAdaptedCustomer extends JsonAdaptedPerson<Customer> {
                              @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email,
                              @JsonProperty("address") String address,
-                             @JsonProperty("remark") String remark,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("customerId") String customerId,
                              @JsonProperty("rewardPoints") String rewardPoints,
                              @JsonProperty("visitCount") String visitCount,
                              @JsonProperty("favouriteItem") String favouriteItem,
                              @JsonProperty("totalSpent") String totalSpent) {
-        super(name, phone, email, address, remark, tags);
+        super(name, phone, email, address, tags);
         this.customerId = customerId;
         this.rewardPoints = rewardPoints;
         this.visitCount = visitCount;
