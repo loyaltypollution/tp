@@ -110,7 +110,6 @@ First time using **CaféConnect**? Don't worry! We've got you covered! This guid
     * [Parameter Order Rules](#parameter-order-rules)
     * [Command Alias](#command-alias)
   * [Features](#features)
-    * [Viewing help: `help`](#viewing-help--help)
     * [Adding a customer: `customeradd` or `ca`](#adding-a-customer-customeradd-or-ca)
     * [Quickly adding a customer: `quickcustomeradd` or `qca`](#quickly-adding-a-customer-quickcustomeradd-or-qca)
     * [Deleting a customer: `customerdelete` or `cd`](#deleting-a-customer-customerdelete-or-cd)
