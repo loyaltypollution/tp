@@ -41,7 +41,7 @@ Managing café operations efficiently is crucial for success—that's why we cre
   </div>
   <div style="text-align: center; max-width: 78%;">
     <img src="images/UG_Ui_Images/initial_staff.png" alt="Initial Staff Screen" style="max-width: 100%; height: auto;"/>
-    <p><i>Customer Tab: manage staff information</i></p>
+    <p><i>Staff Tab: manage staff information</i></p>
   </div>
 </div>
 
@@ -50,7 +50,7 @@ Managing café operations efficiently is crucial for success—that's why we cre
 <div style="display: flex; justify-content: center; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
   <div style="text-align: left; max-width: 18%;">
     <p>2. <b>Customers Tab</b></p>
-    Remember your customers with ease and see them smile!
+    Remember your customers with ease, and see them smile!
   </div>
   <div style="text-align: center; max-width: 78%;">
     <img src="images/UG_Ui_Images/initial_customer.png" alt="Initial Customer Screen" style="max-width: 100%; height: auto;"/>
@@ -110,6 +110,7 @@ First time using **CaféConnect**? Don't worry! We've got you covered! This guid
     * [Parameter Order Rules](#parameter-order-rules)
     * [Command Alias](#command-alias)
   * [Features](#features)
+    * [Viewing help: `help`](#viewing-help--help)
     * [Adding a customer: `customeradd` or `ca`](#adding-a-customer-customeradd-or-ca)
     * [Quickly adding a customer: `quickcustomeradd` or `qca`](#quickly-adding-a-customer-quickcustomeradd-or-qca)
     * [Deleting a customer: `customerdelete` or `cd`](#deleting-a-customer-customerdelete-or-cd)
@@ -296,13 +297,20 @@ In this example:
   - Example: `cid/CUSTOMER_ID n/NAME` have placeholders `CUSTOMER_ID` and `NAME`.
   > `customeradd cid/C0001 n/John Doe` - *"C0001" replaces CUSTOMER_ID, "John Doe" replaces NAME*
 
-* Optional parameters are shown in square brackets `[]`:
+* **Required parameters** (must be included) are shown without square brackets:
+  - Example: `customeradd cid/CUSTOMER_ID n/NAME p/PHONE` means ID, name, and phone are required.
+  
+* **Optional parameters** are shown in square brackets `[]`:
   - Example: `[t/TAG]` means you can add a tag or leave it out.
   > `customeradd cid/C0001 n/John Doe t/regular` - *Here, "regular" is an optional tag that was added*
 
 * Some parameters can be repeated (shown with `…`):
   - Example: `[t/TAG]…` means you can add multiple tags or none at all.
   > `customeradd cid/C0001 n/John Doe t/regular t/vip` - *Here, both "regular" and "vip" are optional tags that were added*
+
+* **Important note about tags**: When adding tags during creation (e.g., `customeradd`), you can add multiple tags as shown above. However, when editing tags (e.g., `customeredit`), all existing tags are replaced with the new ones you specify. Adding tags is not cumulative during editing.
+
+* **Duplicate prefixes**: If you add more than one of each required prefix (e.g., two `n/` prefixes), the command will be treated as invalid.
 
 ### Parameter Order Rules
 
@@ -344,9 +352,14 @@ If you're using a PDF version of this guide, be careful when copying commands th
 
 Before using any commands, make sure you understand the [Understanding Command Syntax](#understanding-command-syntax) rules that apply to all commands in CaféConnect.
 
+* The interface is organized into three tabs: Staff, Customers, and Drinks.
 * When using staff-specific commands (like `staffadd`, `staffdelete`, etc.), the interface will automatically switch to the Staff tab.
-
 * Similarly, when using customer-specific commands (like `customeradd`, `customerdelete`, etc.), the interface will automatically switch to the Customers tab.
+* When using drink-specific commands (like `drinkadd`, `drinkdelete`, etc.), the interface will automatically switch to the Drinks tab.
+* You can also explicitly switch tabs using these commands:
+  * `stafffind all/true` - Switch to Staff tab and view all staff
+  * `customerfind all/true` - Switch to Customers tab and view all customers
+  * `drinkfind all/true` - Switch to Drinks tab and view all drinks
 
 ### Viewing help : `help`
 
@@ -492,10 +505,6 @@ These are the before and after images of the first example
     <p><i>After editing customer details</i></p>
   </div>
 </div>
-
-<box type="info" seamless>
-Note: If you add more than one each of the compulsory prefixes, the command will be treated as invalid
-</box>
 
 ### Finding a customer: `customerfind` or `cf`
 
@@ -772,6 +781,43 @@ These are the before and after images of the first example
   </div>
 </div>
 
+### Editing drink details: `drinkedit` or `de`
+
+Edits the details of an existing drink in the drink catalog.
+
+Format: `drinkedit INDEX [n/NAME] [p/PRICE] [c/CATEGORY]`
+
+* Edits the drink at the specified `INDEX`.
+* The `INDEX` refers to the index number shown in the displayed drink list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …
+* The `INDEX` **must be a valid index number** (e.g., 5 is not valid when there are fewer than five drinks in the displayed list).
+* At least one of the optional fields must be provided.
+* Existing values will be overwritten by the input values.
+* `PRICE` should be a positive number with up to 2 decimal places and must be at least $0.01.
+
+Examples:
+* `drinkedit 1 p/5.00 c/Specialty Coffee` edits the price and category of the 1st drink.
+* `de 2 n/Iced Chai Tea` edits the name of the 2nd drink to be `Iced Chai Tea`.
+
+### Finding a drink: `drinkfind` or `df`
+
+Finds and lists all drinks in the drink catalog whose names or categories contain any of the specified keywords.
+
+Format: `drinkfind [n/NAME] [c/CATEGORY] [p/PRICE]`
+Format: `drinkfind all/true` (to list all drinks)
+
+* The search for drinks by name will return all drinks whose names contain the specified search term.
+* The search for drinks by category will return all drinks in the specified category.
+* The search for drinks by price will return drinks exactly matching the specified price.
+* At least one of the optional fields must be provided or `all/true`.
+* The search is case-insensitive for drink names and categories.
+* Use `drinkfind all/true` or `df all/true` to display the complete list of all drinks in the catalog.
+
+Examples:
+* `drinkfind n/Latte` or `df n/Latte` finds and lists all drinks whose names contain `Latte`.
+* `drinkfind c/Coffee` or `df c/Coffee` finds and lists all drinks in the `Coffee` category.
+* `drinkfind p/4.50` or `df p/4.50` finds and lists all drinks with a price of exactly $4.50.
+* `drinkfind all/true` or `df all/true` lists all drinks in the catalog.
 
 ### Recording a purchase: `purchase` or `p`
 
@@ -785,10 +831,11 @@ Format: `purchase INDEX n/DRINK_NAME [redeem/true]`
 * The `INDEX` **must be a valid index number** (e.g., 5 is not valid when there are fewer than five customers in the displayed list).
 * `DRINK_NAME` must match a drink that exists in the drink catalog.
 * For standard purchases (without redemption):
-  * For every $1 spent, customers earn 10 reward points. Partial dollars earn proportional points (e.g., $4.50 earns 45 points).
+  * For every $1 spent, customers earn 10 reward points. For example, a $4.50 drink earns 45 points.
   * Total spent is updated with the drink price.
 * For redemption purchases (with `redeem/true`):
-  * Reward points are deducted at a rate of 100 points = $1 (e.g., a $4.50 drink costs 450 points).
+  * Reward points are deducted at a rate of 10 points = $0.10 (or 100 points = $1). For example, a $4.50 drink costs 450 points.
+  * If the customer has insufficient points for redemption, an error message will be displayed.
   * Total spent is not updated as the purchase is made with points.
 * Visit count will be incremented by 1 for each purchase, including redemptions.
 
@@ -1021,18 +1068,41 @@ Check that you have the `cafeconnect.jar` in the correct folder and copied the c
 - Use the appropriate tab (Staff, Customers, or Drinks Menu) to view specific information
 - If information appears cut off, try scrolling within panels to view additional content
 
-### Missing customer or staff data after adding
+### "Insufficient points" message during redemption
 
-- Verify you've entered all required fields
-- Check if you're in the correct tab to view the newly added entry
-- Try using the find command with `all/true` parameter to refresh the list view
+- Check the customer's current reward points by looking at their profile details
+- Verify the price of the drink and calculate if they have enough points (100 points = $1)
+- Consider using a standard purchase instead to let them earn more points
+
+### Unable to complete customer/staff search
+
+- For name searches, ensure you're using at least 3 characters for reliable results
+- For exact field searches (like `fi/` or `role/`), check for exact spelling and capitalization
+- If no results appear, use `customerfind all/true` or `stafffind all/true` to reset the view
+
+### Data not saving properly
+
+- Check that you have write permissions to the application folder
+- Ensure there's sufficient disk space available
+- Verify that the data files in the `/data` folder aren't marked as read-only
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Known issues
 
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-2. **If you minimize the Help Window** and then run the `help` command (or use the `Help` menu, or the keyboard alias `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+1. **Multiple Screens**: When using multiple screens, if you move the application to a secondary screen and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
+
+2. **Help Window Visibility**: If you minimize the Help Window and then run the `help` command (or use the `Help` menu, or the keyboard alias `F1`) again, the original Help Window will remain minimized, and no new Help Window will appear. The remedy is to manually restore the minimized Help Window.
+
+3. **Search Limitations**: Very short search strings (less than 3 characters) may not always produce expected results. Use longer search terms for more reliable searching.
+
+4. **UI Scaling**: On high-DPI displays, some UI elements may appear too small or improperly scaled. Adjusting your system's display scaling settings may help.
+
+5. **Long-running Commands**: Commands that process large amounts of data (like searching through many entries) may cause the UI to become temporarily unresponsive. This is normal behavior, and the application should become responsive again once the operation completes.
+
+6. **Special Characters**: Using special characters in names, addresses, or other fields is often not allowed. Even if possible, these may cause display issues or unexpected behavior in some cases. Stick to standard alphanumeric characters when possible.
+
+7. **Memory Usage**: After extended use with many customer/staff entries, the application may use more memory than expected. Restarting the application periodically can help maintain optimal performance.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -1072,6 +1142,9 @@ Command | Format | Examples
 **Purchase (Alias)** | `p INDEX n/DRINK_NAME [redeem/true]` | `p 1 n/Espresso` or `p 2 n/Cappuccino redeem/true`
 **Quick Purchase** | `quickpurchase INDEX:DRINK_NAME[:r]` | `quickpurchase 1:Espresso` or `quickpurchase 2:Cappuccino:r`
 **Quick Purchase (Alias)** | `qp INDEX:DRINK_NAME[:r]` | `qp 1:Espresso` or `qp 2:Cappuccino:r`
+**Switch to Staff Tab** | `stafffind all/true` | -
+**Switch to Customers Tab** | `customerfind all/true` | -
+**Switch to Drinks Tab** | `drinkfind all/true` | -
 **Help** | `help` | -
 
 --------------------------------------------------------------------------------------------------------------------
@@ -1092,9 +1165,10 @@ Home Folder | The Folder that the CaféConnect Application is located when run f
 Index | The application number of the customer or staff displayed in the list.
 Jar | The file format used for the CaféConnect application.
 JDK | JDK stands for Java Development Kit, and it's a software development environment used for developing applications and applets using the Java programming language.
-Parameter | The details needed to perform specific commands (e.g., Add command has parameters for name, phone, etc.).
+JSON | A lightweight data-interchange format that is easy for humans to read and write.
+Parameter | Additional information required by a command to perform its action.
 Performance Rating | A numeric value between 0 and 5.0 that represents a staff member's performance evaluation.
-Prefix | A character or set of characters at the beginning of a parameter that identifies its type (e.g., 'n/' for name, 'p/' for phone).
+Prefix | A short identifier (e.g., n/, p/) that indicates what type of information follows in a command.
 Redemption | Using accumulated reward points to pay for a purchase instead of cash.
 Reward Points | Points earned by customers with each purchase that can be redeemed for future purchases.
 Shift Timing | The working hours of a staff member (e.g., "9am-5pm").
