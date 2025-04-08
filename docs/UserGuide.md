@@ -781,44 +781,6 @@ These are the before and after images of the first example
   </div>
 </div>
 
-### Editing drink details: `drinkedit` or `de`
-
-Edits the details of an existing drink in the drink catalog.
-
-Format: `drinkedit INDEX [n/NAME] [p/PRICE] [c/CATEGORY]`
-
-* Edits the drink at the specified `INDEX`.
-* The `INDEX` refers to the index number shown in the displayed drink list.
-* The `INDEX` **must be a positive integer** 1, 2, 3, …
-* The `INDEX` **must be a valid index number** (e.g., 5 is not valid when there are fewer than five drinks in the displayed list).
-* At least one of the optional fields must be provided.
-* Existing values will be overwritten by the input values.
-* `PRICE` should be a positive number with up to 2 decimal places and must be at least $0.01.
-
-Examples:
-* `drinkedit 1 p/5.00 c/Specialty Coffee` edits the price and category of the 1st drink.
-* `de 2 n/Iced Chai Tea` edits the name of the 2nd drink to be `Iced Chai Tea`.
-
-### Finding a drink: `drinkfind` or `df`
-
-Finds and lists all drinks in the drink catalog whose names or categories contain any of the specified keywords.
-
-Format: `drinkfind [n/NAME] [c/CATEGORY] [p/PRICE]`
-Format: `drinkfind all/true` (to list all drinks)
-
-* The search for drinks by name will return all drinks whose names contain the specified search term.
-* The search for drinks by category will return all drinks in the specified category.
-* The search for drinks by price will return drinks exactly matching the specified price.
-* At least one of the optional fields must be provided or `all/true`.
-* The search is case-insensitive for drink names and categories.
-* Use `drinkfind all/true` or `df all/true` to display the complete list of all drinks in the catalog.
-
-Examples:
-* `drinkfind n/Latte` or `df n/Latte` finds and lists all drinks whose names contain `Latte`.
-* `drinkfind c/Coffee` or `df c/Coffee` finds and lists all drinks in the `Coffee` category.
-* `drinkfind p/4.50` or `df p/4.50` finds and lists all drinks with a price of exactly $4.50.
-* `drinkfind all/true` or `df all/true` lists all drinks in the catalog.
-
 ### Recording a purchase: `purchase` or `p`
 
 Records a purchase for a customer, updating their total spent, visit count, and reward points. Optionally, allows users to redeem reward points to pay for the purchase.
